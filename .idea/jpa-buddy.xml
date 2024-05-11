@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig">
+    <option name="defaultUnitInitialized" value="true" />
+    <option name="renamerInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="69e734a8-fe95-4ba2-945f-27a6ad142973__payrollDb" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/com/talenthub/empresanominamicroservice/model" />
+  </component>
+</project>
