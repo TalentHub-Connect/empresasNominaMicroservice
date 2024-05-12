@@ -3,11 +3,18 @@ package com.talenthub.empresanominamicroservice.controller;
  * Developed by: Juan Felipe Arias.
  */
 
+import com.talenthub.empresanominamicroservice.dto.EmployeeDto;
+import com.talenthub.empresanominamicroservice.model.Contract;
 import com.talenthub.empresanominamicroservice.model.Employee;
+import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
+import com.talenthub.empresanominamicroservice.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -17,8 +24,23 @@ import java.util.Optional;
 @RequestMapping("/employee")
 public class EmployeeController {
 
+    /**
+     * @description Conects with the services for Employee.
+     */
     @Autowired
     private EmployeeService employeeService;
+
+    /**
+     * @description Conects with the services for Contract.
+     */
+    @Autowired
+    private ContractService contractService;
+
+    /**
+     * @description Conects with the services for Pay.
+     */
+    @Autowired
+    private PayService payService;
 
     /***
      * @name getAllEmployees
@@ -28,8 +50,28 @@ public class EmployeeController {
      */
     @CrossOrigin
     @GetMapping("/getEmployees")
-    public Iterable<Employee> getAllEmployees() {
-        return employeeService.getAll();
+    public List<EmployeeDto> getAllEmployees() {
+        Iterable<Employee> employeeIterable = employeeService.getAll();
+        List<EmployeeDto> employeeDtos = new ArrayList<>();
+
+        for(Employee employee : employeeIterable){
+
+            Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractid().longValue());
+
+            EmployeeDto employeeDto = new EmployeeDto(
+                    employee.getId(),
+                    employee.getName(),
+                    employee.getSurname(),
+                    contractOfEmployee.get().getCharge(),
+                    contractOfEmployee.get().getContractType(),
+                    contractOfEmployee.get().getStartdate(),
+                    "Activo"
+            );
+
+            employeeDtos.add(employeeDto);
+        }
+
+        return employeeDtos;
     }
 
     /***
@@ -41,8 +83,22 @@ public class EmployeeController {
      */
     @CrossOrigin
     @GetMapping("/{id}")
-    public Optional<Employee> getEmployeeById(@PathVariable Long id) {
-        return employeeService.getById(id);
+    public EmployeeDto getEmployeeById(@PathVariable Long id) {
+        Optional<Employee> employeeOptional = employeeService.getById(id);
+        Optional<Contract> contractOfEmployee = contractService.getById(employeeOptional.get().getContractid().longValue());
+
+        EmployeeDto employeeDto = new EmployeeDto(
+                employeeOptional.get().getId(),
+                employeeOptional.get().getName(),
+                employeeOptional.get().getSurname(),
+                contractOfEmployee.get().getCharge(),
+                contractOfEmployee.get().getContractType(),
+                contractOfEmployee.get().getStartdate(),
+                "Activo"
+        );
+
+        return employeeDto;
+
     }
 
     /***
