@@ -6,14 +6,15 @@ package com.talenthub.empresanominamicroservice.controller;
 import com.talenthub.empresanominamicroservice.dto.EmployeeDto;
 import com.talenthub.empresanominamicroservice.model.Contract;
 import com.talenthub.empresanominamicroservice.model.Employee;
+import com.talenthub.empresanominamicroservice.model.Pay;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
 import com.talenthub.empresanominamicroservice.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,18 +58,23 @@ public class EmployeeController {
         for(Employee employee : employeeIterable){
 
             Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractid().longValue());
+            Optional<Pay> payOfEmployee = payService.getById(employee.getId().longValue());
 
-            EmployeeDto employeeDto = new EmployeeDto(
-                    employee.getId(),
-                    employee.getName(),
-                    employee.getSurname(),
-                    contractOfEmployee.get().getCharge(),
-                    contractOfEmployee.get().getContractType(),
-                    contractOfEmployee.get().getStartdate(),
-                    "Activo"
-            );
+            if(!payOfEmployee.isEmpty()){
+                EmployeeDto employeeDto = new EmployeeDto(
+                        employee.getId(),
+                        employee.getName(),
+                        employee.getSurname(),
+                        contractOfEmployee.get().getCharge(),
+                        contractOfEmployee.get().getContractType(),
+                        contractOfEmployee.get().getStartdate(),
+                        payOfEmployee.get().getStatus(),
+                        payOfEmployee.get().getDiscount()
+                );
 
-            employeeDtos.add(employeeDto);
+                employeeDtos.add(employeeDto);
+            }
+
         }
 
         return employeeDtos;
@@ -86,19 +92,24 @@ public class EmployeeController {
     public EmployeeDto getEmployeeById(@PathVariable Long id) {
         Optional<Employee> employeeOptional = employeeService.getById(id);
         Optional<Contract> contractOfEmployee = contractService.getById(employeeOptional.get().getContractid().longValue());
+        Optional<Pay> payOfEmployee = payService.getById(id);
 
-        EmployeeDto employeeDto = new EmployeeDto(
-                employeeOptional.get().getId(),
-                employeeOptional.get().getName(),
-                employeeOptional.get().getSurname(),
-                contractOfEmployee.get().getCharge(),
-                contractOfEmployee.get().getContractType(),
-                contractOfEmployee.get().getStartdate(),
-                "Activo"
-        );
+        if(!payOfEmployee.isEmpty()){
+            EmployeeDto employeeDto = new EmployeeDto(
+                    employeeOptional.get().getId(),
+                    employeeOptional.get().getName(),
+                    employeeOptional.get().getSurname(),
+                    contractOfEmployee.get().getCharge(),
+                    contractOfEmployee.get().getContractType(),
+                    contractOfEmployee.get().getStartdate(),
+                    payOfEmployee.get().getStatus(),
+                    payOfEmployee.get().getDiscount()
+            );
 
-        return employeeDto;
+            return employeeDto;
+        }
 
+        return new EmployeeDto(null,"user not found","","","","","",0.0);
     }
 
     /***

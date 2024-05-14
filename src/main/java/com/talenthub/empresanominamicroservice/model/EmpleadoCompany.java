@@ -17,5 +17,6 @@ public class EmpleadoCompany {
     public void setId(EmpleadoCompanyId id) {
         this.id = id;
     }
-    
+
+    //TODO [JPA Buddy] generate columns from DB
 }

@@ -14,7 +14,9 @@ public class EmployeeDto implements Serializable {
     private final String startdate;
     private final String status;
 
-    public EmployeeDto(Integer id, String name, String surname, String department, String contractType, String startdate, String status) {
+    private final Double salario;
+
+    public EmployeeDto(Integer id, String name, String surname, String department, String contractType, String startdate, String status, Double salario) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -22,6 +24,7 @@ public class EmployeeDto implements Serializable {
         this.contractType = contractType;
         this.startdate = startdate;
         this.status = status;
+        this.salario = salario;
     }
 
     public Integer getId() {
@@ -50,5 +53,9 @@ public class EmployeeDto implements Serializable {
 
     public String getStatus() {
         return status;
+    }
+
+    public Double getSalario() {
+        return salario;
     }
 }
