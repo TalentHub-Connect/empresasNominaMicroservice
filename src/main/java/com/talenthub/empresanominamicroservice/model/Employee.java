@@ -1,12 +1,14 @@
 package com.talenthub.empresanominamicroservice.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "employee", schema = "payrollDb")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -36,6 +38,9 @@ public class Employee {
 
     @Column(name = "planid", nullable = false)
     private Integer planid;
+
+    @Column(name = "companyid")
+    private Integer companyid;
 
     public Integer getId() {
         return id;
@@ -115,6 +120,14 @@ public class Employee {
 
     public void setPlanid(Integer planid) {
         this.planid = planid;
+    }
+
+    public Integer getCompanyid() {
+        return companyid;
+    }
+
+    public void setCompanyid(Integer companyid) {
+        this.companyid = companyid;
     }
 
 }
