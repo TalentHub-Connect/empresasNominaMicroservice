@@ -11,7 +11,6 @@ import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
 import com.talenthub.empresanominamicroservice.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -66,7 +65,7 @@ public class EmployeeController {
                             employee.getId(),
                             employee.getName(),
                             employee.getSurname(),
-                            contractOfEmployee.get().getCharge(),
+                            employee.getDepartment(),
                             contractOfEmployee.get().getContractType(),
                             contractOfEmployee.get().getStartdate(),
                             payOfEmployee.get().getStatus(),

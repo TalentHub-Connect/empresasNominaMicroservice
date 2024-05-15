@@ -40,6 +40,9 @@ public class Employee {
     @Column(name = "companyid")
     private Integer companyid;
 
+    @Column(name = "department", length = 50)
+    private String department;
+
     public Integer getId() {
         return id;
     }
@@ -126,6 +129,14 @@ public class Employee {
 
     public void setCompanyid(Integer companyid) {
         this.companyid = companyid;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
 }
