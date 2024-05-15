@@ -5025,7 +5025,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>6</Position>
     </column>
     <column id="1106" parent="377" name="id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>3</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -5146,77 +5146,81 @@ id_company</ColNames>
       <DasType>int|0s</DasType>
       <Position>11</Position>
     </column>
-    <index id="1132" parent="379" name="PRIMARY">
+    <column id="1132" parent="379" name="department">
+      <DasType>varchar(50)|0s</DasType>
+      <Position>12</Position>
+    </column>
+    <index id="1133" parent="379" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="1133" parent="379" name="PRIMARY">
+    <key id="1134" parent="379" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="1134" parent="380" name="id">
+    <column id="1135" parent="380" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1135" parent="380" name="name">
+    <column id="1136" parent="380" name="name">
       <DasType>varchar(45)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="1136" parent="380" name="description">
+    <column id="1137" parent="380" name="description">
       <DasType>varchar(45)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="1137" parent="380" name="moneybenefit">
+    <column id="1138" parent="380" name="moneybenefit">
       <DasType>double|0s</DasType>
       <Position>4</Position>
     </column>
-    <index id="1138" parent="380" name="PRIMARY">
+    <index id="1139" parent="380" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="1139" parent="380" name="PRIMARY">
+    <key id="1140" parent="380" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="1140" parent="381" name="id">
-      <AutoIncrement>1</AutoIncrement>
+    <column id="1141" parent="381" name="id">
+      <AutoIncrement>2</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="1141" parent="381" name="paydate">
+    <column id="1142" parent="381" name="paydate">
       <DasType>varchar(15)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="1142" parent="381" name="discount">
+    <column id="1143" parent="381" name="discount">
       <DasType>double|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="1143" parent="381" name="discountreason">
+    <column id="1144" parent="381" name="discountreason">
       <DasType>varchar(45)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="1144" parent="381" name="status">
+    <column id="1145" parent="381" name="status">
       <DasType>varchar(45)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="1145" parent="381" name="employeeid">
+    <column id="1146" parent="381" name="employeeid">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <index id="1146" parent="381" name="PRIMARY">
+    <index id="1147" parent="381" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="1147" parent="381" name="PRIMARY">
+    <key id="1148" parent="381" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
