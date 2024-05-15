@@ -50,29 +50,32 @@ public class EmployeeController {
      * @return An iterable list of employees.
      */
     @CrossOrigin
-    @GetMapping("/getEmployees")
-    public List<EmployeeDto> getAllEmployees() {
+    @GetMapping("/getEmployees/{id}")
+    public List<EmployeeDto> getAllEmployees(@PathVariable Long id) {
         Iterable<Employee> employeeIterable = employeeService.getAll();
         List<EmployeeDto> employeeDtos = new ArrayList<>();
 
         for(Employee employee : employeeIterable){
 
-            Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractid().longValue());
-            Optional<Pay> payOfEmployee = payService.getById(employee.getId().longValue());
+            if(employee.getCompanyid().intValue() == id){
+                Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractid().longValue());
+                Optional<Pay> payOfEmployee = payService.getById(employee.getId().longValue());
 
-            if(!payOfEmployee.isEmpty()){
-                EmployeeDto employeeDto = new EmployeeDto(
-                        employee.getId(),
-                        employee.getName(),
-                        employee.getSurname(),
-                        contractOfEmployee.get().getCharge(),
-                        contractOfEmployee.get().getContractType(),
-                        contractOfEmployee.get().getStartdate(),
-                        payOfEmployee.get().getStatus(),
-                        payOfEmployee.get().getDiscount()
-                );
+                if(!payOfEmployee.isEmpty()){
+                    EmployeeDto employeeDto = new EmployeeDto(
+                            employee.getId(),
+                            employee.getName(),
+                            employee.getSurname(),
+                            contractOfEmployee.get().getCharge(),
+                            contractOfEmployee.get().getContractType(),
+                            contractOfEmployee.get().getStartdate(),
+                            payOfEmployee.get().getStatus(),
+                            payOfEmployee.get().getDiscount()
+                    );
 
-                employeeDtos.add(employeeDto);
+                    employeeDtos.add(employeeDto);
+                }
+
             }
 
         }
