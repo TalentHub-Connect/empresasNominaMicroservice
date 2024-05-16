@@ -17,7 +17,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/pay")
 public class PayController {
-    
+
     @Autowired
     private PayService payService;
 
@@ -45,6 +45,7 @@ public class PayController {
     public Optional<Pay> getPayById(@PathVariable Long id) {
         return payService.getById(id);
     }
+
 
     /**
      * @name createPay
@@ -83,5 +84,5 @@ public class PayController {
         return payService.update(pay);
 
     }
-    
+
 }
