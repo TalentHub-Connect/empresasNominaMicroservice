@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/NewsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/NewsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/PayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/PayService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +99,7 @@
       <workItem from="1715543011542" duration="4315000" />
       <workItem from="1715705495607" duration="6794000" />
       <workItem from="1715745636418" duration="515000" />
-      <workItem from="1715806050928" duration="4298000" />
+      <workItem from="1715806050928" duration="6125000" />
     </task>
     <task id="LOCAL-00001" summary="1.2.1">
       <created>1715467740911</created>

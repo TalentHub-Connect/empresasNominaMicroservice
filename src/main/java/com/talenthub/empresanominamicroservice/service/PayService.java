@@ -41,6 +41,26 @@ public class PayService {
     }
 
     /**
+     * @name getPayByEmployeeId
+     * @description Retrieves pay by its Employee's Id.
+     *
+     * @param id the ID of the pay
+     * @return An optional containing the pay with the specified ID, if exists
+     */
+    public Pay getPayByEmployeeId(Long id){
+
+        Iterable<Pay> allPays = getAll();
+
+        for(Pay pay : allPays){
+            if(pay.getEmployeeid().intValue() == id){
+                return pay;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @name create
      * @description Creates a new pay.
      *
