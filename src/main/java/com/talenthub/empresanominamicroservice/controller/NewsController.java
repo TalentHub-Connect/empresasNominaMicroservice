@@ -57,7 +57,7 @@ public class NewsController {
      * @param news the details of the news to create.
      * @return The newly created news.
      */
-    @CrossOrigin
+    @CrossOrigin()
     @PostMapping("/createNews/{id}")
     public News createNews(@PathVariable Long id,@RequestBody News news) {
 
