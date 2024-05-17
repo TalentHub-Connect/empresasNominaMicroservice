@@ -48,7 +48,7 @@ public class EmployeeController {
      *
      * @return An iterable list of employees.
      */
-    @CrossOrigin
+
     @GetMapping("/getEmployees/{id}")
     public List<EmployeeDto> getAllEmployees(@PathVariable Long id) {
         Iterable<Employee> employeeIterable = employeeService.getAll();
@@ -60,7 +60,7 @@ public class EmployeeController {
                 Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractid().longValue());
                 Optional<Pay> payOfEmployee = payService.getById(employee.getId().longValue());
 
-                if(!payOfEmployee.isEmpty()){
+                if(payOfEmployee.isPresent()){
                     EmployeeDto employeeDto = new EmployeeDto(
                             employee.getId(),
                             employee.getName(),
@@ -89,39 +89,34 @@ public class EmployeeController {
      * @param id the ID of the employee.
      * @return An optional containing the employee with the specified ID, if exists.
      */
-    @CrossOrigin
+
+
     @GetMapping("/{id}")
     public EmployeeDto getEmployeeById(@PathVariable Long id) {
         Optional<Employee> employeeOptional = employeeService.getById(id);
         Optional<Contract> contractOfEmployee = contractService.getById(employeeOptional.get().getContractid().longValue());
         Optional<Pay> payOfEmployee = payService.getById(id);
 
-        if(!payOfEmployee.isEmpty()){
-            EmployeeDto employeeDto = new EmployeeDto(
-                    employeeOptional.get().getId(),
-                    employeeOptional.get().getName(),
-                    employeeOptional.get().getSurname(),
-                    contractOfEmployee.get().getCharge(),
-                    contractOfEmployee.get().getContractType(),
-                    contractOfEmployee.get().getStartdate(),
-                    payOfEmployee.get().getStatus(),
-                    payOfEmployee.get().getDiscount()
-            );
-
-            return employeeDto;
-        }
-
-        return new EmployeeDto(null,"user not found","","","","","",0.0);
+        return payOfEmployee.map(pay -> new EmployeeDto(
+                employeeOptional.get().getId(),
+                employeeOptional.get().getName(),
+                employeeOptional.get().getSurname(),
+                contractOfEmployee.get().getCharge(),
+                contractOfEmployee.get().getContractType(),
+                contractOfEmployee.get().getStartdate(),
+                pay.getStatus(),
+                pay.getDiscount()
+        )).orElseGet(() -> new EmployeeDto(null, "user not found", "", "", "", "", "", 0.0));
     }
 
-    /***
+    /**
      * @name createEmployee
      * @description Creates a new employee.
      *
      * @param employee the details of the employee to create.
      * @return The newly created employee.
      */
-    @CrossOrigin
+
     @PostMapping("/createEmployee")
     public Employee createEmployee(@RequestBody Employee employee) {
         return employeeService.create(employee);
@@ -135,13 +130,12 @@ public class EmployeeController {
      * @param employeeDetails the details of the updated employee.
      * @return The updated employee.
      */
-    @CrossOrigin
+
     @PutMapping("/updateEmployee/{id}")
     public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails){
         Optional<Employee> optionalEmployee = employeeService.getById(id);
 
         Employee employee = optionalEmployee.get();
-
         employee.setName(employeeDetails.getName());
         employee.setSurname(employeeDetails.getSurname());
         employee.setPhonenumber(employeeDetails.getPhonenumber());
@@ -151,7 +145,6 @@ public class EmployeeController {
         employee.setBenefitsid(employeeDetails.getBenefitsid());
         employee.setContractid(employeeDetails.getContractid());
         employee.setPlanid(employeeDetails.getPlanid());
-
         return employeeService.update(employee);
 
     }

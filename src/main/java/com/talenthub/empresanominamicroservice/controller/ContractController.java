@@ -17,8 +17,12 @@ import java.util.Optional;
 @RequestMapping("/contract")
 public class ContractController {
 
+    private final ContractService contractService;
+
     @Autowired
-    private ContractService contractService;
+    public ContractController(ContractService contractService) {
+        this.contractService = contractService;
+    }
 
     /**
      * @name getAllContracts
