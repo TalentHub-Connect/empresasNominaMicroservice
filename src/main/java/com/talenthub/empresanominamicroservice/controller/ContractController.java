@@ -17,8 +17,12 @@ import java.util.Optional;
 @RequestMapping("/contract")
 public class ContractController {
 
+    private final ContractService contractService;
+
     @Autowired
-    private ContractService contractService;
+    public ContractController(ContractService contractService) {
+        this.contractService = contractService;
+    }
 
     /**
      * @name getAllContracts
@@ -26,7 +30,8 @@ public class ContractController {
      *
      * @return An iterable list of contracts.
      */
-    @CrossOrigin
+
+
     @GetMapping("/getContracts")
     public Iterable<Contract> getAllContracts() {
         return contractService.getAll();
@@ -40,7 +45,7 @@ public class ContractController {
      *
      * @return The contract with the specified Id, if existed.
      */
-    @CrossOrigin
+
     @GetMapping("/{id}")
     public Optional<Contract> getContractById(@PathVariable Long id) {
         return contractService.getById(id);
