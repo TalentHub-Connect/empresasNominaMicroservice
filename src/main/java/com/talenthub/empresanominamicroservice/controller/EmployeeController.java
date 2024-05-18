@@ -67,7 +67,7 @@ public class EmployeeController {
                             employee.getSurname(),
                             employee.getDepartment(),
                             contractOfEmployee.get().getContractType(),
-                            contractOfEmployee.get().getStartdate(),
+                            contractOfEmployee.get().getStartDate(),
                             payOfEmployee.get().getStatus(),
                             payOfEmployee.get().getDiscount()
                     );
@@ -103,7 +103,7 @@ public class EmployeeController {
                 employeeOptional.get().getSurname(),
                 contractOfEmployee.get().getCharge(),
                 contractOfEmployee.get().getContractType(),
-                contractOfEmployee.get().getStartdate(),
+                contractOfEmployee.get().getStartDate(),
                 pay.getStatus(),
                 pay.getDiscount()
         )).orElseGet(() -> new EmployeeDto(null, "user not found", "", "", "", "", "", 0.0));

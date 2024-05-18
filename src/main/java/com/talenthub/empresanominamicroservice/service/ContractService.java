@@ -1,9 +1,7 @@
 package com.talenthub.empresanominamicroservice.service;
-/**
- * Developed by: Juan Felipe Arias
- */
 
 import com.talenthub.empresanominamicroservice.model.Contract;
+import com.talenthub.empresanominamicroservice.payload.request.ContractDTO;
 import com.talenthub.empresanominamicroservice.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,50 +14,62 @@ import java.util.Optional;
 @Service
 public class ContractService {
 
+    private final ContractRepository contractRepository;
+
     @Autowired
-    private ContractRepository contractRepository;
+    public ContractService(ContractRepository contractRepository) {
+        this.contractRepository = contractRepository;
+    }
 
     /**
+     * @return An iterable list of contracts.
      * @name getAll
      * @description Retrieves all existing contracts.
-     *
-     * @return An iterable list of contracts.
      */
-    public Iterable<Contract> getAll(){
+
+    public Iterable<Contract> getAll() {
         return contractRepository.findAll();
     }
 
     /**
-     * @name getById
-     * @description Retrieves a contract by its ID.
-     *
      * @param id the ID of the contract.
      * @return An optional containing the contract with the specified ID, if exists.
+     * @name getById
+     * @description Retrieves a contract by its ID.
      */
-    public Optional<Contract> getById(Long id){
+    public Optional<Contract> getById(Long id) {
         return contractRepository.findById(id);
     }
 
     /**
+     * @param contractDTO the details of the contract to create.
+     * @return The newly created contract.
      * @name create
      * @description Creates a new contract.
-     *
-     * @param contract the details of the contract to create.
-     * @return The newly created contract.
      */
-    public Contract create(Contract contract){
-        return contractRepository.save(contract);
+
+    public Contract create(ContractDTO contractDTO) {
+        return contractRepository.save(Contract.builder()
+                .description(contractDTO.getDescription())
+                .salary(contractDTO.getSalary())
+                .charge(contractDTO.getCharge())
+                .startDate(contractDTO.getStartDate())
+                .endDate(contractDTO.getEndDate())
+                .eps(contractDTO.getEps())
+                .contractType(contractDTO.getContractType())
+                .candidateId(contractDTO.getCandidateId())
+                .build());
     }
 
     /**
-     * @name update
-     * @description Updates an existing contract.
-     *
      * @param contract the contract to update.
      * @return The updated contract.
+     * @name update
+     * @description Updates an existing contract.
      */
-    public Contract update(Contract contract){
+
+    public Contract update(Contract contract) {
         return contractRepository.save(contract);
     }
-    
+
 }

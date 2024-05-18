@@ -4,8 +4,11 @@ package com.talenthub.empresanominamicroservice.controller;
  */
 
 import com.talenthub.empresanominamicroservice.model.Contract;
+import com.talenthub.empresanominamicroservice.payload.request.ContractDTO;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -60,10 +63,10 @@ public class ContractController {
      *
      * @return A newly created contract.
      */
-    @CrossOrigin
+
     @PostMapping("/createContract")
-    public Contract createContract(@RequestBody Contract contract) {
-        return contractService.create(contract);
+    public ResponseEntity<?> createContract(@RequestBody ContractDTO contract) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(contractService.create(contract));
     }
 
     /**
@@ -75,7 +78,7 @@ public class ContractController {
      *
      * @return The updated contract.
      */
-    @CrossOrigin
+
     @PutMapping("/updateContract/{id}")
     public Contract updateContract(@PathVariable Long id, @RequestBody Contract contractDetails){
         Optional<Contract> optionalcontract = contractService.getById(id);
@@ -85,8 +88,8 @@ public class ContractController {
         contract.setDescription(contractDetails.getDescription());
         contract.setSalary(contractDetails.getSalary());
         contract.setCharge(contractDetails.getCharge());
-        contract.setStartdate(contractDetails.getStartdate());
-        contract.setEnddate(contractDetails.getEnddate());
+        contract.setStartDate(contractDetails.getStartDate());
+        contract.setEndDate(contractDetails.getEndDate());
         contract.setEps(contractDetails.getEps());
         contract.setContractType(contractDetails.getContractType());
         contract.setCandidateId(contractDetails.getCandidateId());
