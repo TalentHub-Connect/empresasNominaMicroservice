@@ -30,6 +30,7 @@ public class ContractController {
      *
      * @return An iterable list of contracts.
      */
+
     @CrossOrigin
     @GetMapping("/getContracts")
     public Iterable<Contract> getAllContracts() {
@@ -44,6 +45,7 @@ public class ContractController {
      *
      * @return The contract with the specified Id, if existed.
      */
+
     @CrossOrigin
     @GetMapping("/{id}")
     public Optional<Contract> getContractById(@PathVariable Long id) {
