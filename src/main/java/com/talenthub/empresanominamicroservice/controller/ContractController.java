@@ -90,7 +90,7 @@ public class ContractController {
     @ApiResponse(responseCode = "200", description = "Contract updated")
     @ApiResponse(responseCode = "400", description = "Bad request")
     @PutMapping("/updateContract/{id}")
-    public Contract updateContract(@PathVariable Integer id, @RequestBody ContractDTO contractDetails) {
+    public Contract updateContract(@PathVariable Integer id, @RequestBody ContractRequest contractDetails) {
         try {
             return contractService.update(id, contractDetails);
 

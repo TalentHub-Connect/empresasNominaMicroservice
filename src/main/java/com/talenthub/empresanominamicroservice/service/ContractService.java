@@ -72,7 +72,7 @@ public class ContractService {
      * @description Updates an existing contract.
      */
 
-    public Contract update(Integer id,ContractDTO contractDTO) {
+    public Contract update(Integer id,ContractRequest contractDTO) {
         Contract contract = getById(id).orElseThrow(() -> new RuntimeException("Contract not found"));
         contract.setDescription(contractDTO.getDescription());
         contract.setSalary(contractDTO.getSalary());
