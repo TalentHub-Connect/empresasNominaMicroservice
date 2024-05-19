@@ -1,12 +1,14 @@
 package com.talenthub.empresanominamicroservice.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "employee", schema = "payrollDb")
 public class Employee {
     @Id
@@ -21,7 +23,7 @@ public class Employee {
     private String surname;
 
     @Column(name = "phonenumber")
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "supporttickets_id")
     private Integer supportTicketsId;

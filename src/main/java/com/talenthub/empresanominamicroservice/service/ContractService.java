@@ -1,7 +1,7 @@
 package com.talenthub.empresanominamicroservice.service;
 
 import com.talenthub.empresanominamicroservice.model.Contract;
-import com.talenthub.empresanominamicroservice.payload.request.ContractDTO;
+import com.talenthub.empresanominamicroservice.payload.request.ContractRequest;
 import com.talenthub.empresanominamicroservice.payload.response.ContractResponse;
 import com.talenthub.empresanominamicroservice.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,22 +44,22 @@ public class ContractService {
     }
 
     /**
-     * @param contractDTO the details of the contract to create.
+     * @param contractRequest the details of the contract to create.
      * @return The newly created contract.
      * @name create
      * @description Creates a new contract.
      */
 
-    public ContractResponse create(ContractDTO contractDTO) {
+    public ContractResponse create(ContractRequest contractRequest) {
         Contract newContract = Contract.builder()
-                .description(contractDTO.getDescription())
-                .salary(contractDTO.getSalary())
-                .charge(contractDTO.getCharge())
-                .startDate(contractDTO.getStartDate())
-                .endDate(contractDTO.getEndDate())
-                .eps(contractDTO.getEps())
-                .contractType(contractDTO.getContractType())
-                .candidateId(contractDTO.getCandidateId())
+                .description(contractRequest.getDescription())
+                .salary(contractRequest.getSalary())
+                .charge(contractRequest.getCharge())
+                .startDate(contractRequest.getStartDate())
+                .endDate(contractRequest.getEndDate())
+                .eps(contractRequest.getEps())
+                .contractType(contractRequest.getContractType())
+                .candidateId(contractRequest.getCandidateId())
                 .build();
         Contract savedContract = contractRepository.save(newContract);
         return ContractResponse.builder().contractId(savedContract.getId()).build();

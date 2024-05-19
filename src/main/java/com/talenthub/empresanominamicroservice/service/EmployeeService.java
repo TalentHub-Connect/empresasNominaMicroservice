@@ -4,6 +4,7 @@ package com.talenthub.empresanominamicroservice.service;
  */
 
 import com.talenthub.empresanominamicroservice.model.Employee;
+import com.talenthub.empresanominamicroservice.payload.request.EmployeeRequest;
 import com.talenthub.empresanominamicroservice.payload.response.EmployeeResponse;
 import com.talenthub.empresanominamicroservice.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,12 @@ import java.util.Optional;
 @Service
 public class EmployeeService {
 
+    private final EmployeeRepository EmployeeRepository;
+
     @Autowired
-    private EmployeeRepository EmployeeRepository;
+    public EmployeeService(EmployeeRepository EmployeeRepository) {
+        this.EmployeeRepository = EmployeeRepository;
+    }
 
     /**
      * @name getAll
@@ -30,17 +35,22 @@ public class EmployeeService {
         return EmployeeRepository.findAll();
     }
 
-
-
     /**
      * @name create
      * @description Creates a new employee.
      *
-     * @param employee the details of the employee to create.
+     * @param employeeRequest the details of the employee to create.
      * @return The newly created employee.
      */
-    public Employee create(Employee employee){
-        return EmployeeRepository.save(employee);
+
+    public Employee createEmployee(EmployeeRequest employeeRequest) {
+        return  EmployeeRepository.save(Employee.builder()
+                .name(employeeRequest.getName())
+                .surname(employeeRequest.getSurname())
+                .phoneNumber(employeeRequest.getPhoneNumber())
+                .companyId(employeeRequest.getCompanyId())
+                .contractId(employeeRequest.getContractId())
+                .build());
     }
 
     /**

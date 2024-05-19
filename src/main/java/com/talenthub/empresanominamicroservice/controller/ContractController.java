@@ -5,7 +5,7 @@ package com.talenthub.empresanominamicroservice.controller;
 
 import com.talenthub.empresanominamicroservice.exception.ContractNotFoundException;
 import com.talenthub.empresanominamicroservice.model.Contract;
-import com.talenthub.empresanominamicroservice.payload.request.ContractDTO;
+import com.talenthub.empresanominamicroservice.payload.request.ContractRequest;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -70,7 +70,7 @@ public class ContractController {
     @ApiResponse(responseCode = "201", description = "Contract created")
     @ApiResponse(responseCode = "400", description = "Bad request")
     @PostMapping("/createContract")
-    public ResponseEntity<?> createContract(@RequestBody ContractDTO contract) {
+    public ResponseEntity<?> createContract(@RequestBody ContractRequest contract) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(contractService.create(contract));
         } catch (Exception e) {
