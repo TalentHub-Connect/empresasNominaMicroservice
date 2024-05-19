@@ -3,18 +3,15 @@ package com.talenthub.empresanominamicroservice.controller;
  * Developed by: Juan Felipe Arias.
  */
 
-import com.talenthub.empresanominamicroservice.dto.EmployeeDto;
-import com.talenthub.empresanominamicroservice.model.Contract;
 import com.talenthub.empresanominamicroservice.model.Employee;
-import com.talenthub.empresanominamicroservice.model.Pay;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
 import com.talenthub.empresanominamicroservice.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,20 +24,27 @@ public class EmployeeController {
     /**
      * @description Conects with the services for Employee.
      */
-    @Autowired
-    private EmployeeService employeeService;
+
+    private final EmployeeService employeeService;
 
     /**
      * @description Conects with the services for Contract.
      */
-    @Autowired
-    private ContractService contractService;
+
+    private final ContractService contractService;
 
     /**
      * @description Conects with the services for Pay.
      */
+
+    private final PayService payService;
+
     @Autowired
-    private PayService payService;
+    public EmployeeController(EmployeeService employeeService, ContractService contractService, PayService payService) {
+        this.employeeService = employeeService;
+        this.contractService = contractService;
+        this.payService = payService;
+    }
 
     /***
      * @name getAllEmployees
@@ -49,37 +53,13 @@ public class EmployeeController {
      * @return An iterable list of employees.
      */
 
-    @GetMapping("/getEmployees/{id}")
-    public List<EmployeeDto> getAllEmployees(@PathVariable Long id) {
-        Iterable<Employee> employeeIterable = employeeService.getAll();
-        List<EmployeeDto> employeeDtos = new ArrayList<>();
-
-        for(Employee employee : employeeIterable){
-
-            if(employee.getCompanyid().intValue() == id){
-                Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractid().longValue());
-                Optional<Pay> payOfEmployee = payService.getById(employee.getId().longValue());
-
-                if(payOfEmployee.isPresent()){
-                    EmployeeDto employeeDto = new EmployeeDto(
-                            employee.getId(),
-                            employee.getName(),
-                            employee.getSurname(),
-                            employee.getDepartment(),
-                            contractOfEmployee.get().getContractType(),
-                            contractOfEmployee.get().getStartDate(),
-                            payOfEmployee.get().getStatus(),
-                            payOfEmployee.get().getDiscount()
-                    );
-
-                    employeeDtos.add(employeeDto);
-                }
-
-            }
-
+    @GetMapping("/getEmployees/company/{id}")
+    public ResponseEntity<?> getAllEmployeesByCompany(@PathVariable Long id) {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(employeeService.getAllByCompany(id));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body("Error al obtener los empleados");
         }
-
-        return employeeDtos;
     }
 
     /***
@@ -92,21 +72,8 @@ public class EmployeeController {
 
 
     @GetMapping("/{id}")
-    public EmployeeDto getEmployeeById(@PathVariable Long id) {
-        Optional<Employee> employeeOptional = employeeService.getById(id);
-        Optional<Contract> contractOfEmployee = contractService.getById(employeeOptional.get().getContractid().longValue());
-        Optional<Pay> payOfEmployee = payService.getById(id);
-
-        return payOfEmployee.map(pay -> new EmployeeDto(
-                employeeOptional.get().getId(),
-                employeeOptional.get().getName(),
-                employeeOptional.get().getSurname(),
-                contractOfEmployee.get().getCharge(),
-                contractOfEmployee.get().getContractType(),
-                contractOfEmployee.get().getStartDate(),
-                pay.getStatus(),
-                pay.getDiscount()
-        )).orElseGet(() -> new EmployeeDto(null, "user not found", "", "", "", "", "", 0.0));
+    public Employee getEmployeeById(@PathVariable Long id) {
+        return employeeService.getById(id);
     }
 
     /**
@@ -133,20 +100,16 @@ public class EmployeeController {
 
     @PutMapping("/updateEmployee/{id}")
     public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails){
-        Optional<Employee> optionalEmployee = employeeService.getById(id);
-
-        Employee employee = optionalEmployee.get();
+        Employee employee = employeeService.getById(id);
         employee.setName(employeeDetails.getName());
         employee.setSurname(employeeDetails.getSurname());
-        employee.setPhonenumber(employeeDetails.getPhonenumber());
-        employee.setNameemergencycontact(employeeDetails.getNameemergencycontact());
-        employee.setEmergencycontact(employeeDetails.getEmergencycontact());
-        employee.setSupportticketsId(employeeDetails.getSupportticketsId());
-        employee.setBenefitsid(employeeDetails.getBenefitsid());
-        employee.setContractid(employeeDetails.getContractid());
-        employee.setPlanid(employeeDetails.getPlanid());
+        employee.setPhoneNumber(employeeDetails.getPhoneNumber());
+        employee.setSupportTicketsId(employeeDetails.getSupportTicketsId());
+        employee.setBenefitsId(employeeDetails.getBenefitsId());
+        employee.setContractId(employeeDetails.getContractId());
+        employee.setPlanId(employeeDetails.getPlanId());
+        employee.setCompanyId(employeeDetails.getCompanyId());
+        employee.setDepartment(employeeDetails.getDepartment());
         return employeeService.update(employee);
-
     }
-
 }

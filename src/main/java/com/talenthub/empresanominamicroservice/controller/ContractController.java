@@ -28,10 +28,9 @@ public class ContractController {
     }
 
     /**
+     * @return An iterable list of contracts.
      * @name getAllContracts
      * @description Retrieves all existing contracts.
-     *
-     * @return An iterable list of contracts.
      */
 
     @CrossOrigin
@@ -41,12 +40,10 @@ public class ContractController {
     }
 
     /**
+     * @param id The Id of the contract to find.
+     * @return The contract with the specified Id, if existed.
      * @name getContractById
      * @description Retrieves a contract by its Id.
-     *
-     * @param id The Id of the contract to find.
-     *
-     * @return The contract with the specified Id, if existed.
      */
 
     @CrossOrigin
@@ -56,31 +53,31 @@ public class ContractController {
     }
 
     /**
+     * @param contract The information of the contract before created.
+     * @return A newly created contract.
      * @name createContract
      * @description Creates a new contract.
-     *
-     * @param contract The information of the contract before created.
-     *
-     * @return A newly created contract.
      */
 
     @PostMapping("/createContract")
     public ResponseEntity<?> createContract(@RequestBody ContractDTO contract) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(contractService.create(contract));
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(contractService.create(contract));
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
+     * @param id              The Id of the contract to update.
+     * @param contractDetails The details of the updated contract.
+     * @return The updated contract.
      * @name updateContract
      * @description Creates a new contract.
-     *
-     * @param id The Id of the contract to update.
-     * @param contractDetails The details of the updated contract.
-     *
-     * @return The updated contract.
      */
 
     @PutMapping("/updateContract/{id}")
-    public Contract updateContract(@PathVariable Long id, @RequestBody Contract contractDetails){
+    public Contract updateContract(@PathVariable Long id, @RequestBody Contract contractDetails) {
         Optional<Contract> optionalcontract = contractService.getById(id);
 
         Contract contract = optionalcontract.get();

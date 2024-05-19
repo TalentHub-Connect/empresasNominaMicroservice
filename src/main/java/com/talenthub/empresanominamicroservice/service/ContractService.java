@@ -2,6 +2,7 @@ package com.talenthub.empresanominamicroservice.service;
 
 import com.talenthub.empresanominamicroservice.model.Contract;
 import com.talenthub.empresanominamicroservice.payload.request.ContractDTO;
+import com.talenthub.empresanominamicroservice.payload.response.ContractResponse;
 import com.talenthub.empresanominamicroservice.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,8 +49,8 @@ public class ContractService {
      * @description Creates a new contract.
      */
 
-    public Contract create(ContractDTO contractDTO) {
-        return contractRepository.save(Contract.builder()
+    public ContractResponse create(ContractDTO contractDTO) {
+        Contract newContract = Contract.builder()
                 .description(contractDTO.getDescription())
                 .salary(contractDTO.getSalary())
                 .charge(contractDTO.getCharge())
@@ -58,7 +59,9 @@ public class ContractService {
                 .eps(contractDTO.getEps())
                 .contractType(contractDTO.getContractType())
                 .candidateId(contractDTO.getCandidateId())
-                .build());
+                .build();
+        Contract savedContract = contractRepository.save(newContract);
+        return ContractResponse.builder().contractId(savedContract.getId()).build();
     }
 
     /**

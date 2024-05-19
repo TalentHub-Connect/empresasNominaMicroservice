@@ -4,6 +4,7 @@ package com.talenthub.empresanominamicroservice.service;
  */
 
 import com.talenthub.empresanominamicroservice.model.Employee;
+import com.talenthub.empresanominamicroservice.payload.response.EmployeeResponse;
 import com.talenthub.empresanominamicroservice.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +30,7 @@ public class EmployeeService {
         return EmployeeRepository.findAll();
     }
 
-    /**
-     * @name getById
-     * @description Retrieves an employee by its ID.
-     *
-     * @param id the ID of the employee.
-     * @return An optional containing the employee with the specified ID, if exists.
-     */
-    public Optional<Employee> getById(Long id){
-        return EmployeeRepository.findById(id);
-    }
+
 
     /**
      * @name create
@@ -62,4 +54,12 @@ public class EmployeeService {
         return EmployeeRepository.save(employee);
     }
 
+    public Employee getById(Long id) {
+        Optional<Employee> employee = EmployeeRepository.findById(id);
+        return employee.orElse(null);
+    }
+
+    public EmployeeResponse getAllByCompany(Long id) {
+        return null;
+    }
 }
