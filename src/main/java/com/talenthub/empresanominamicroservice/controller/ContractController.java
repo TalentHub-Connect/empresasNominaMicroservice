@@ -4,7 +4,7 @@ package com.talenthub.empresanominamicroservice.controller;
  */
 
 import com.talenthub.empresanominamicroservice.model.Contract;
-import com.talenthub.empresanominamicroservice.payload.request.ContractDTO;
+import com.talenthub.empresanominamicroservice.payload.request.ContractRequest;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,7 +60,7 @@ public class ContractController {
      */
 
     @PostMapping("/createContract")
-    public ResponseEntity<?> createContract(@RequestBody ContractDTO contract) {
+    public ResponseEntity<?> createContract(@RequestBody ContractRequest contract) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(contractService.create(contract));
         } catch (Exception e) {

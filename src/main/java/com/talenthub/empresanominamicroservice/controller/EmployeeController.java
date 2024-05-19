@@ -4,6 +4,7 @@ package com.talenthub.empresanominamicroservice.controller;
  */
 
 import com.talenthub.empresanominamicroservice.model.Employee;
+import com.talenthub.empresanominamicroservice.payload.request.EmployeeRequest;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
 import com.talenthub.empresanominamicroservice.service.PayService;
@@ -46,7 +47,23 @@ public class EmployeeController {
         this.payService = payService;
     }
 
-    /***
+    /**
+     * @name getAllEmployees
+     * @description Retrieves all existing employees.
+     *
+     * @return An iterable list of employees.
+     */
+
+    @GetMapping("/getEmployees")
+    public ResponseEntity<?> getAllEmployees() {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(employeeService.getAll());
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body("Error al obtener los empleados");
+        }
+    }
+
+    /**
      * @name getAllEmployees
      * @description Retrieves all existing employees.
      *
@@ -62,14 +79,13 @@ public class EmployeeController {
         }
     }
 
-    /***
+    /**
      * @name getEmployeeById
      * @description Retrieves an employee by their ID.
      *
      * @param id the ID of the employee.
      * @return An optional containing the employee with the specified ID, if exists.
      */
-
 
     @GetMapping("/{id}")
     public Employee getEmployeeById(@PathVariable Long id) {
@@ -85,8 +101,13 @@ public class EmployeeController {
      */
 
     @PostMapping("/createEmployee")
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeService.create(employee);
+    public ResponseEntity<?> createEmployee(@RequestBody EmployeeRequest employee) {
+        try {
+           return ResponseEntity.status(HttpStatus.CREATED).body(employeeService.createEmployee(employee));
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al crear el contrato");
+        }
     }
 
     /**

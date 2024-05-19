@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContractDTO {
+public class ContractRequest {
     private String description;
     private Double salary;
     private String charge;
