@@ -38,7 +38,8 @@ public class ContractService {
      * @name getById
      * @description Retrieves a contract by its ID.
      */
-    public Optional<Contract> getById(Long id) {
+
+    public Optional<Contract> getById(Integer id) {
         return contractRepository.findById(id);
     }
 
@@ -65,13 +66,22 @@ public class ContractService {
     }
 
     /**
-     * @param contract the contract to update.
+     * @param contractDTO the contract to update.
      * @return The updated contract.
      * @name update
      * @description Updates an existing contract.
      */
 
-    public Contract update(Contract contract) {
+    public Contract update(Integer id,ContractDTO contractDTO) {
+        Contract contract = getById(id).orElseThrow(() -> new RuntimeException("Contract not found"));
+        contract.setDescription(contractDTO.getDescription());
+        contract.setSalary(contractDTO.getSalary());
+        contract.setCharge(contractDTO.getCharge());
+        contract.setStartDate(contractDTO.getStartDate());
+        contract.setEndDate(contractDTO.getEndDate());
+        contract.setEps(contractDTO.getEps());
+        contract.setContractType(contractDTO.getContractType());
+        contract.setCandidateId(contractDTO.getCandidateId());
         return contractRepository.save(contract);
     }
 

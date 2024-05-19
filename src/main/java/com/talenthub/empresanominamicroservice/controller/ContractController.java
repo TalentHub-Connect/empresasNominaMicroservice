@@ -3,9 +3,12 @@ package com.talenthub.empresanominamicroservice.controller;
  * Developed by: Juan Felipe Arias.
  */
 
+import com.talenthub.empresanominamicroservice.exception.ContractNotFoundException;
 import com.talenthub.empresanominamicroservice.model.Contract;
 import com.talenthub.empresanominamicroservice.payload.request.ContractDTO;
 import com.talenthub.empresanominamicroservice.service.ContractService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +36,9 @@ public class ContractController {
      * @description Retrieves all existing contracts.
      */
 
-    @CrossOrigin
+    @Operation(summary = "Get all contracts")
+    @ApiResponse(responseCode = "200", description = "Found the contracts")
+    @ApiResponse(responseCode = "404", description = "Contracts not found")
     @GetMapping("/getContracts")
     public Iterable<Contract> getAllContracts() {
         return contractService.getAll();
@@ -46,9 +51,11 @@ public class ContractController {
      * @description Retrieves a contract by its Id.
      */
 
-    @CrossOrigin
+    @Operation(summary = "Get contract by id")
+    @ApiResponse(responseCode = "200", description = "Found the contract")
+    @ApiResponse(responseCode = "404", description = "Contract not found")
     @GetMapping("/{id}")
-    public Optional<Contract> getContractById(@PathVariable Long id) {
+    public Optional<Contract> getContractById(@PathVariable Integer id) {
         return contractService.getById(id);
     }
 
@@ -59,6 +66,9 @@ public class ContractController {
      * @description Creates a new contract.
      */
 
+    @Operation(summary = "Create contract")
+    @ApiResponse(responseCode = "201", description = "Contract created")
+    @ApiResponse(responseCode = "400", description = "Bad request")
     @PostMapping("/createContract")
     public ResponseEntity<?> createContract(@RequestBody ContractDTO contract) {
         try {
@@ -76,24 +86,16 @@ public class ContractController {
      * @description Creates a new contract.
      */
 
+    @Operation(summary = "Update contract")
+    @ApiResponse(responseCode = "200", description = "Contract updated")
+    @ApiResponse(responseCode = "400", description = "Bad request")
     @PutMapping("/updateContract/{id}")
-    public Contract updateContract(@PathVariable Long id, @RequestBody Contract contractDetails) {
-        Optional<Contract> optionalcontract = contractService.getById(id);
+    public Contract updateContract(@PathVariable Integer id, @RequestBody ContractDTO contractDetails) {
+        try {
+            return contractService.update(id, contractDetails);
 
-        Contract contract = optionalcontract.get();
-
-        contract.setDescription(contractDetails.getDescription());
-        contract.setSalary(contractDetails.getSalary());
-        contract.setCharge(contractDetails.getCharge());
-        contract.setStartDate(contractDetails.getStartDate());
-        contract.setEndDate(contractDetails.getEndDate());
-        contract.setEps(contractDetails.getEps());
-        contract.setContractType(contractDetails.getContractType());
-        contract.setCandidateId(contractDetails.getCandidateId());
-
-        return contractService.update(contract);
-
+        } catch (Exception e) {
+            throw new ContractNotFoundException("Contract not found with id: " + id);
+        }
     }
-
-
 }
