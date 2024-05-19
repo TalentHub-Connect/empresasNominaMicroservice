@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Ready to deploy">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/exception/ContractNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/ContractController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/ContractService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/ContractController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/ContractController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/ContractService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/ContractService.class" afterDir="false" />
-    </list>
+    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Complete the Contract" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -179,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716056423171</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Complete the Contract">
+      <option name="closed" value="true" />
+      <created>1716152398539</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716152398539</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,7 +192,8 @@
     <MESSAGE value="New changes" />
     <MESSAGE value="Properties fix" />
     <MESSAGE value="Ready to deploy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ready to deploy" />
+    <MESSAGE value="Complete the Contract" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete the Contract" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
