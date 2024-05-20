@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="BObito">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/payload/request/EmployeeRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Complete the fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/ContractController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/payload/request/ContractDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/payload/request/ContractRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/payload/request/EmployeeDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/ContractService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/EmployeeService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +76,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Spring Boot.EmpresaNominaMicroserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;QA&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/codes/Arquitectura de Software/Proyecto/empresasNominaMicroservice/src/main/java/com/talenthub/empresanominamicroservice&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -153,6 +144,7 @@
       <workItem from="1716054881032" duration="1128000" />
       <workItem from="1716145455258" duration="3894000" />
       <workItem from="1716153678660" duration="605000" />
+      <workItem from="1716160766522" duration="40000" />
     </task>
     <task id="LOCAL-00001" summary="1.2.1">
       <created>1715467740911</created>
@@ -185,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716056423171</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Complete the fix">
+      <option name="closed" value="true" />
+      <created>1716154750777</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716154750777</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +196,8 @@
     <MESSAGE value="New changes" />
     <MESSAGE value="Properties fix" />
     <MESSAGE value="Ready to deploy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ready to deploy" />
+    <MESSAGE value="Complete the fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete the fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
