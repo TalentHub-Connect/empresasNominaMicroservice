@@ -8,6 +8,8 @@ import com.talenthub.empresanominamicroservice.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,6 +29,27 @@ public class NewsService {
      */
     public Iterable<News> getAll(){
         return newsRepository.findAll();
+    }
+
+    /**
+     * @name getNewByEmployee
+     * @description Retrieves news by its Employee's ID.
+     *
+     * @param id the ID of the Employee
+     * @return An optional containing the news with the specified employeeId, if exists
+     */
+    public List<News> getNewByEmployee(Long id){
+
+        Iterable<News> allNews = getAll();
+        List<News> newsOfEmployee = new ArrayList<>();
+
+        for(News n : allNews){
+            if(Integer.parseInt(n.getEmployeeid()) == id){
+                newsOfEmployee.add(n);
+            }
+        }
+
+        return newsOfEmployee;
     }
 
     /**
