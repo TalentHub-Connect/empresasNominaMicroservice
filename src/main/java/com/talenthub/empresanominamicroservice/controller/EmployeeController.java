@@ -8,6 +8,8 @@ import com.talenthub.empresanominamicroservice.payload.request.EmployeeRequest;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
 import com.talenthub.empresanominamicroservice.service.PayService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,12 +66,15 @@ public class EmployeeController {
     }
 
     /**
-     * @name getAllEmployees
-     * @description Retrieves all existing employees.
-     *
-     * @return An iterable list of employees.
+     * @name getAllEmployeesByCompany
+     * @description Retrieves all existing employees by company.
+     * @return ResponseEntity with the list of employees.
      */
 
+    @Operation(summary = "Get all employees by company")
+    @ApiResponse(responseCode = "200", description = "Found the employees")
+    @ApiResponse(responseCode = "404", description = "Employees not found")
+    @ApiResponse(responseCode = "400", description = "Bad request")
     @GetMapping("/getEmployees/company/{id}")
     public ResponseEntity<?> getAllEmployeesByCompany(@PathVariable Long id) {
         try{
@@ -87,6 +92,10 @@ public class EmployeeController {
      * @return An optional containing the employee with the specified ID, if exists.
      */
 
+    @Operation(summary = "Get employee by id")
+    @ApiResponse(responseCode = "200", description = "Found the employee")
+    @ApiResponse(responseCode = "404", description = "Employee not found")
+    @ApiResponse(responseCode = "400", description = "Bad request")
     @GetMapping("/{id}")
     public Employee getEmployeeById(@PathVariable Long id) {
         return employeeService.getById(id);

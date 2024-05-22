@@ -4,11 +4,19 @@ package com.talenthub.empresanominamicroservice.controller;
  * Developed by: Juan Felipe Arias
  */
 
+import com.talenthub.empresanominamicroservice.model.EmployeeDto;
+import com.talenthub.empresanominamicroservice.model.News;
 import com.talenthub.empresanominamicroservice.model.Pay;
+import com.talenthub.empresanominamicroservice.service.EmployeeService;
+import com.talenthub.empresanominamicroservice.service.NewsService;
 import com.talenthub.empresanominamicroservice.service.PayService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,31 +29,118 @@ public class PayController {
     @Autowired
     private PayService payService;
 
+    @Autowired
+    private NewsService newsService;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+
     /**
      * @name getAllPays
      * @description Retrieves all existing pays.
      *
      * @return An iterable list of pays
      */
-    @CrossOrigin
-    @GetMapping("/getPays")
-    public Iterable<Pay> getAllPays() {
-        return payService.getAll();
+    @Operation(summary = "Get all pays")
+    @ApiResponse(responseCode = "200", description = "Found the pays")
+    @ApiResponse(responseCode = "404", description = "Pays not founded")
+    @ApiResponse(responseCode = "400", description = "Bad request")
+    @GetMapping("/getPays/{id}")
+    public Iterable<Pay> getAllPays(@PathVariable Long id) {
+
+        List<Pay> paysResponse = new ArrayList<>();
+
+        List<EmployeeDto> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
+
+        for(EmployeeDto e : allEmployees){
+            paysResponse.add(getPayById(e.getId().longValue()));
+        }
+
+        return paysResponse;
     }
+
+    /**
+     * @name getAllPays
+     * @description Retrieves all existing pays without news values.
+     *
+     * @return An iterable list of pays
+     */
+    @Operation(summary = "Get all net pays")
+    @ApiResponse(responseCode = "200", description = "Found the pays")
+    @ApiResponse(responseCode = "404", description = "Pays not founded")
+    @ApiResponse(responseCode = "400", description = "Bad request")
+    @GetMapping("/getNetPays/{id}")
+    public Iterable<Pay> getAllNetPays(@PathVariable Long id) {
+
+        List<Pay> paysResponse = new ArrayList<>();
+
+        List<EmployeeDto> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
+
+        for(EmployeeDto e : allEmployees){
+            paysResponse.add(payService.getPayByEmployeeId(e.getId().longValue()));
+        }
+
+        return paysResponse;
+    }
+
+    /**
+     * @name getSalaries
+     * @description Add up all employee salaries.
+     *
+     * @param id the ID of the companyId
+     *
+     * @return The total salaries
+     */
+
+     @Operation(summary = "Get all salaries of employees")
+     @ApiResponse(responseCode = "200", description = "Found the salaries")
+     @ApiResponse(responseCode = "404", description = "Salaries not founded")
+     @ApiResponse(responseCode = "400", description = "Bad request")
+     @GetMapping("/getSalaries/{id}")
+     public Double getSalaries(@PathVariable Long id){
+
+         List<EmployeeDto> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
+
+         Double salariesTotal = 0d;
+
+         for(EmployeeDto e : allEmployees){
+             salariesTotal += payService.getPayByEmployeeId(e.getId().longValue()).getDiscount();
+         }
+
+         return salariesTotal;
+     }
 
     /**
      * @name getPayById
      * @description Retrieves a pay by its ID.
      *
-     * @param id the ID of the pay
+     * @param id the ID of the employee.
      * @return An optional containing the pay with the specified ID, if exists
      */
-    @CrossOrigin
+    @Operation(summary = "Get Pay by id")
+    @ApiResponse(responseCode = "200", description = "Found the Pay")
+    @ApiResponse(responseCode = "404", description = "Pay not found")
+    @ApiResponse(responseCode = "400", description = "Bad request")
     @GetMapping("/{id}")
-    public Optional<Pay> getPayById(@PathVariable Long id) {
-        return payService.getById(id);
-    }
+    public Pay getPayById(@PathVariable Long id) {
 
+        Pay payOfEmployee = payService.getPayByEmployeeId(id);
+        List<News> newsOfPay = newsService.getNewByEmployee(id);
+
+        if(!newsOfPay.isEmpty()){
+
+            Double salary = 0d;
+
+            for(News n : newsOfPay){
+                salary += n.getMoneybenefit().doubleValue();
+            }
+
+            payOfEmployee.setDiscount(salary);
+        }
+
+        return payOfEmployee;
+    }
 
     /**
      * @name createPay
@@ -54,7 +149,6 @@ public class PayController {
      * @param pay the details of the pay to create
      * @return The newly created pay
      */
-    @CrossOrigin
     @PostMapping("/createPay")
     public Pay createPay(@RequestBody Pay pay) {
         return payService.create(pay);
@@ -68,7 +162,6 @@ public class PayController {
      * @param payDetails  the details of the updated pay
      * @return The updated pay
      */
-    @CrossOrigin
     @PutMapping("/updatePay/{id}")
     public Pay updatePay(@PathVariable Long id, @RequestBody Pay payDetails){
         Optional<Pay> optionalPay = payService.getById(id);

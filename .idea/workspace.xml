@@ -4,17 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="BObito">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/payload/request/EmployeeRequest.java" afterDir="false" />
+    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Complete the fix">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/EmployeeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/ContractController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/payload/request/ContractDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/payload/request/ContractRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/payload/request/EmployeeDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/ContractService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/News.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/NewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/NewsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/ContractController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/ContractController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/EmployeeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/PayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/PayController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/model/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/model/News.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/ContractService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/ContractService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/EmployeeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/EmployeeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/NewsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/NewsService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +67,8 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -85,9 +93,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Spring Boot.EmpresaNominaMicroserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;QA&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/codes/Arquitectura de Software/Proyecto/empresasNominaMicroservice/src/main/java/com/talenthub/empresanominamicroservice&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/juanf/OneDrive - Pontificia Universidad Javeriana/Desktop/APIGatewayCanela/empresasNominaMicroservice/empresasNominaMicroservice&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -96,7 +104,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pathVariables&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;4ee8e83f827af1390f846c7b635d6804&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -111,7 +119,40 @@
       <recent name="D:\codes\Arquitectura de Software\Proyecto\empresasNominaMicroservice\src\main\java\com\talenthub\empresanominamicroservice" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.EmpresaNominaMicroserviceApplication">
+    <configuration name="EmpresaNominaMicroserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="DB_DRIVER" value="com.mysql.cj.jdbc.Driver" />
+        <env name="DB_PASS" value="NMpTTtOpvhVJWSowoHxHHnkbTzOqLoPa" />
+        <env name="DB_URL" value="jdbc:mysql://root:NMpTTtOpvhVJWSowoHxHHnkbTzOqLoPa@monorail.proxy.rlwy.net:58588/payrollDb" />
+        <env name="DB_USER" value="root" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="com.talenthub.empresanominamicroservice.EmpresaNominaMicroserviceApplication" />
+      <module name="empresasNominaMicroservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.talenthub.empresanominamicroservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmpresaNominaMicroserviceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="empresasNominaMicroservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.talenthub.empresanominamicroservice.EmpresaNominaMicroserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EmpresaNominaMicroserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
         <env name="MYSQLUSER" value="root" />
@@ -123,6 +164,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.EmpresaNominaMicroserviceApplication" />
+      <item itemvalue="Spring Boot.EmpresaNominaMicroserviceApplication" />
+      <item itemvalue="Spring Boot.EmpresaNominaMicroserviceApplication (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EmpresaNominaMicroserviceApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -153,6 +204,8 @@
       <workItem from="1716054881032" duration="1128000" />
       <workItem from="1716145455258" duration="3894000" />
       <workItem from="1716153678660" duration="605000" />
+      <workItem from="1716160766522" duration="40000" />
+      <workItem from="1716348218767" duration="6220000" />
     </task>
     <task id="LOCAL-00001" summary="1.2.1">
       <created>1715467740911</created>
@@ -185,18 +238,38 @@
       <option name="project" value="LOCAL" />
       <updated>1716056423171</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Complete the fix">
+      <option name="closed" value="true" />
+      <created>1716154750777</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716154750777</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.2.1" />
     <MESSAGE value="New changes" />
     <MESSAGE value="Properties fix" />
     <MESSAGE value="Ready to deploy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ready to deploy" />
+    <MESSAGE value="Complete the fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete the fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
