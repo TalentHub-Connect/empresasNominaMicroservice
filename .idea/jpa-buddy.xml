@@ -3,7 +3,7 @@
   <component name="JpaBuddyIdeaProjectConfig">
     <option name="defaultUnitInitialized" value="true" />
     <option name="renamerInitialized" value="true" />
-    <option name="reverseEngineeringLastDbConnectionId" value="69e734a8-fe95-4ba2-945f-27a6ad142973__payrollDb" />
+    <option name="reverseEngineeringLastDbConnectionId" value="12e8cc87-7b8b-4d70-85cb-d72824f47a74__payrollDb" />
     <option name="reLastEntityCreationPackage" value="src/main/java/com/talenthub/empresanominamicroservice/model" />
   </component>
 </project>
