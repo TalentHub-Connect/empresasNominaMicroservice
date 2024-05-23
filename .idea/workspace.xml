@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Fix some operations of swagger" />
+    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Fix properties">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/69e734a8-fe95-4ba2-945f-27a6ad142973.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/69e734a8-fe95-4ba2-945f-27a6ad142973.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +29,10 @@
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -45,6 +52,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.EmpresaNominaMicroserviceApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
@@ -108,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716434096822</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fix properties">
+      <option name="closed" value="true" />
+      <created>1716435030319</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716435030319</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,7 +133,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.2.1" />
     <MESSAGE value="Fix some operations of swagger" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix some operations of swagger" />
+    <MESSAGE value="Fix properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix properties" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
