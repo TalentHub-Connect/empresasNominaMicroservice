@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Complete the fix">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/EmployeeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/News.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/model/News.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/NewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/NewsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/ContractController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/ContractController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/EmployeeController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/PayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/PayController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/model/News.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/model/News.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/ContractService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/ContractService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/EmployeeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/EmployeeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/NewsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/NewsService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

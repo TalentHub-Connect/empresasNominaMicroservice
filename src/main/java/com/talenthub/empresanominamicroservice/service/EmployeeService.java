@@ -58,10 +58,10 @@ public class EmployeeService {
 
         for(Employee employee : employeeIterable){
             if(employee.getCompanyId().intValue() == id){
-                Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
-                Optional<Pay> payOfEmployee = payService.getById(employee.getId().longValue());
+                try{
+                    Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
+                    Pay payOfEmployee = payService.getPayByEmployeeId(employee.getId().longValue());
 
-                if(!payOfEmployee.isEmpty()){
                     EmployeeDto employeeDto = new EmployeeDto();
 
                     employeeDto.setId(employee.getId());
@@ -70,12 +70,14 @@ public class EmployeeService {
                     employeeDto.setDepartment(employee.getDepartment());
                     employeeDto.setContractType(contractOfEmployee.get().getContractType());
                     employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
-                    employeeDto.setStatus(payOfEmployee.get().getStatus());
-                    employeeDto.setDiscount(payOfEmployee.get().getDiscount());
+                    employeeDto.setStatus(payOfEmployee.getStatus());
+                    employeeDto.setDiscount(payOfEmployee.getDiscount());
 
                     employeeDtos.add(employeeDto);
-                }
 
+                }catch (Exception e){
+                    System.err.print(e.getMessage());
+                }
             }
 
         }
