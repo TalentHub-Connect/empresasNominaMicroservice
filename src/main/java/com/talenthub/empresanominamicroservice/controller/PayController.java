@@ -39,6 +39,7 @@ public class PayController {
     /**
      * @name getAllPays
      * @description Retrieves all existing pays.
+     * @param id - CompanyId
      *
      * @return An iterable list of pays
      */
@@ -105,11 +106,63 @@ public class PayController {
          Double salariesTotal = 0d;
 
          for(EmployeeDto e : allEmployees){
-             salariesTotal += payService.getPayByEmployeeId(e.getId().longValue()).getDiscount();
+             salariesTotal += getPayById(e.getId().longValue()).getDiscount();
          }
 
          return salariesTotal;
      }
+
+    /**
+     * @name emptyNews
+     * @description Set all the News moneybenefit in 0.
+     *
+     * @param id the ID of the companyId
+     *
+     * @return Boolean confirmation.
+     */
+
+    @Operation(summary = "Collect all the news of a company and set their values in 0.")
+    @ApiResponse(responseCode = "200", description = "Found the news")
+    @ApiResponse(responseCode = "404", description = "News not founded")
+    @ApiResponse(responseCode = "400", description = "Bad request")
+    @GetMapping("/disperse/{id}")
+    public boolean disperse(@PathVariable Long id) {
+
+        List<EmployeeDto> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
+
+        if(allEmployees.isEmpty()){
+            return false;
+        }
+
+        for (EmployeeDto e : allEmployees) {
+
+            List<News> newsList = newsService.getNewByEmployee(e.getId().longValue());
+
+            if(!newsList.isEmpty()){
+                emptyNews(newsList);
+            }
+        }
+
+        return true;
+    }
+
+
+    /**
+     * @name emptyNews
+     * @description Set all the News moneybenefit in 0.
+     *
+     * @param newsOfEmployee the News of each Employee.
+     *
+     * @return Boolean confirmation.
+     */
+    private void emptyNews(List<News> newsOfEmployee){
+
+        for(News n : newsOfEmployee){
+            n.setMoneybenefit(0.0);
+            newsService.update(n);
+        }
+
+    }
 
     /**
      * @name getPayById
