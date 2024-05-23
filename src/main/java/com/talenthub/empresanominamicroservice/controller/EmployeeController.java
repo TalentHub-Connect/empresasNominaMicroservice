@@ -27,20 +27,26 @@ public class EmployeeController {
     /**
      * @description Conects with the services for Employee.
      */
-    @Autowired
-    private EmployeeService employeeService;
+
+    private final EmployeeService employeeService;
 
     /**
      * @description Conects with the services for Contract.
      */
-    @Autowired
-    private ContractService contractService;
+
+    private final ContractService contractService;
 
     /**
      * @description Conects with the services for Pay.
      */
+
+    private final PayService payService;
     @Autowired
-    private PayService payService;
+    public EmployeeController(EmployeeService employeeService, ContractService contractService, PayService payService) {
+        this.employeeService = employeeService;
+        this.contractService = contractService;
+        this.payService = payService;
+    }
 
     /***
      * @name getAllEmployees
