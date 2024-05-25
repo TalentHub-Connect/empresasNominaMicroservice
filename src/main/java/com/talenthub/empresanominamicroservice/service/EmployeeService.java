@@ -52,37 +52,9 @@ public class EmployeeService {
      *
      * @return An iterable list of employees.
      */
-    public List<EmployeeDto> getAllEmployeesByCompanyId(Long id) {
-        Iterable<Employee> employeeIterable = getAll();
-        List<EmployeeDto> employeeDtos = new ArrayList<>();
 
-        for(Employee employee : employeeIterable){
-            if(employee.getCompanyId().intValue() == id){
-                try{
-                    Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
-                    Pay payOfEmployee = payService.getPayByEmployeeId(employee.getId().longValue());
-
-                    EmployeeDto employeeDto = new EmployeeDto();
-
-                    employeeDto.setId(employee.getId());
-                    employeeDto.setName(employee.getName());
-                    employeeDto.setSurname(employee.getSurname());
-                    employeeDto.setDepartment(employee.getDepartment());
-                    employeeDto.setContractType(contractOfEmployee.get().getContractType());
-                    employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
-                    employeeDto.setStatus(payOfEmployee.getStatus());
-                    employeeDto.setDiscount(payOfEmployee.getDiscount());
-
-                    employeeDtos.add(employeeDto);
-
-                }catch (Exception e){
-                    System.err.print(e.getMessage());
-                }
-            }
-
-        }
-
-        return employeeDtos;
+    public List<Employee> getAllEmployeesByCompanyId(Integer id) {
+        return EmployeeRepository.findByCompanyId(id);
     }
 
     /**
@@ -110,16 +82,13 @@ public class EmployeeService {
      * @param employee the employee to update.
      * @return The updated employee.
      */
+
     public Employee update(Employee employee){
         return EmployeeRepository.save(employee);
     }
 
-    public Employee getById(Long id) {
+    public Employee getById(Integer id) {
         Optional<Employee> employee = EmployeeRepository.findById(id);
         return employee.orElse(null);
-    }
-
-    public EmployeeResponse getAllByCompany(Long id) {
-        return null;
     }
 }
