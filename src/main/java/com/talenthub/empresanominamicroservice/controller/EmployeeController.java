@@ -76,9 +76,9 @@ public class EmployeeController {
     @ApiResponse(responseCode = "404", description = "Employees not found")
     @ApiResponse(responseCode = "400", description = "Bad request")
     @GetMapping("/getEmployees/company/{id}")
-    public ResponseEntity<?> getAllEmployeesByCompany(@PathVariable Long id) {
+    public ResponseEntity<?> getAllEmployeesByCompany(@PathVariable Integer id) {
         try{
-            return ResponseEntity.status(HttpStatus.OK).body(employeeService.getAllByCompany(id));
+            return ResponseEntity.status(HttpStatus.OK).body(employeeService.getAllEmployeesByCompanyId(id));
         } catch (Exception e){
             return ResponseEntity.badRequest().body("Error al obtener los empleados");
         }
@@ -97,7 +97,7 @@ public class EmployeeController {
     @ApiResponse(responseCode = "404", description = "Employee not found")
     @ApiResponse(responseCode = "400", description = "Bad request")
     @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable Long id) {
+    public Employee getEmployeeById(@PathVariable Integer id) {
         return employeeService.getById(id);
     }
 
@@ -129,7 +129,7 @@ public class EmployeeController {
      */
 
     @PutMapping("/updateEmployee/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails){
+    public Employee updateEmployee(@PathVariable Integer id, @RequestBody Employee employeeDetails){
         Employee employee = employeeService.getById(id);
         employee.setName(employeeDetails.getName());
         employee.setSurname(employeeDetails.getSurname());

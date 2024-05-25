@@ -4,6 +4,7 @@ package com.talenthub.empresanominamicroservice.controller;
  * Developed by: Juan Felipe Arias
  */
 
+import com.talenthub.empresanominamicroservice.model.Employee;
 import com.talenthub.empresanominamicroservice.model.EmployeeDto;
 import com.talenthub.empresanominamicroservice.model.News;
 import com.talenthub.empresanominamicroservice.model.Pay;
@@ -48,13 +49,13 @@ public class PayController {
     @ApiResponse(responseCode = "404", description = "Pays not founded")
     @ApiResponse(responseCode = "400", description = "Bad request")
     @GetMapping("/getPays/{id}")
-    public Iterable<Pay> getAllPays(@PathVariable Long id) {
+    public Iterable<Pay> getAllPays(@PathVariable Integer id) {
 
         List<Pay> paysResponse = new ArrayList<>();
 
-        List<EmployeeDto> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
+        List<Employee> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
 
-        for(EmployeeDto e : allEmployees){
+        for(Employee e : allEmployees){
             paysResponse.add(getPayById(e.getId().longValue()));
         }
 
@@ -72,13 +73,13 @@ public class PayController {
     @ApiResponse(responseCode = "404", description = "Pays not founded")
     @ApiResponse(responseCode = "400", description = "Bad request")
     @GetMapping("/getNetPays/{id}")
-    public Iterable<Pay> getAllNetPays(@PathVariable Long id) {
+    public Iterable<Pay> getAllNetPays(@PathVariable Integer id) {
 
         List<Pay> paysResponse = new ArrayList<>();
 
-        List<EmployeeDto> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
+        List<Employee> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
 
-        for(EmployeeDto e : allEmployees){
+        for(Employee e : allEmployees){
             paysResponse.add(payService.getPayByEmployeeId(e.getId().longValue()));
         }
 
@@ -99,13 +100,13 @@ public class PayController {
      @ApiResponse(responseCode = "404", description = "Salaries not founded")
      @ApiResponse(responseCode = "400", description = "Bad request")
      @GetMapping("/getSalaries/{id}")
-     public Double getSalaries(@PathVariable Long id){
+     public Double getSalaries(@PathVariable Integer id){
 
-         List<EmployeeDto> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
+         List<Employee> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
 
          Double salariesTotal = 0d;
 
-         for(EmployeeDto e : allEmployees){
+         for(Employee e : allEmployees){
              salariesTotal += getPayById(e.getId().longValue()).getDiscount();
          }
 
@@ -126,15 +127,15 @@ public class PayController {
     @ApiResponse(responseCode = "404", description = "News not founded")
     @ApiResponse(responseCode = "400", description = "Bad request")
     @GetMapping("/disperse/{id}")
-    public boolean disperse(@PathVariable Long id) {
+    public boolean disperse(@PathVariable Integer id) {
 
-        List<EmployeeDto> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
+        List<Employee> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
 
         if(allEmployees.isEmpty()){
             return false;
         }
 
-        for (EmployeeDto e : allEmployees) {
+        for (Employee e : allEmployees) {
 
             List<News> newsList = newsService.getNewByEmployee(e.getId().longValue());
 
