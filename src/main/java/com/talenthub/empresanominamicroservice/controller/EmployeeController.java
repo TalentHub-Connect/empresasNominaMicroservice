@@ -3,7 +3,10 @@ package com.talenthub.empresanominamicroservice.controller;
  * Developed by: Juan Felipe Arias.
  */
 
+import com.talenthub.empresanominamicroservice.model.Contract;
 import com.talenthub.empresanominamicroservice.model.Employee;
+import com.talenthub.empresanominamicroservice.model.EmployeeDto;
+import com.talenthub.empresanominamicroservice.model.Pay;
 import com.talenthub.empresanominamicroservice.payload.request.EmployeeRequest;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
@@ -15,6 +18,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -82,6 +87,57 @@ public class EmployeeController {
         } catch (Exception e){
             return ResponseEntity.badRequest().body("Error al obtener los empleados");
         }
+    }
+
+    /**
+     * @name getAllEmployeesByCompanyId
+     * @description Retrieves all existing employees by company Id.
+     *
+     * @return An iterable list of employees.
+     */
+    @Operation(summary = "Get all employees by company")
+    @ApiResponse(responseCode = "200", description = "Found the employees")
+    @ApiResponse(responseCode = "404", description = "Employees not found")
+    @ApiResponse(responseCode = "400", description = "Bad request")
+    @GetMapping("/getEmployeesDTO/company/{id}")
+    public List<EmployeeDto> getAllEmployeesDTOByCompanyId(@PathVariable Long id) {
+
+        try{
+            List<Employee> employeeIterable = employeeService.getAllEmployeesByCompanyId(id.intValue());
+            List<EmployeeDto> employeeDtos = new ArrayList<>();
+
+            for(Employee employee : employeeIterable){
+                if(employee.getCompanyId().longValue() == id){
+
+                    Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
+                    Pay payOfEmployee = payService.getPayByEmployeeId(employee.getId().longValue());
+
+                    if(payOfEmployee != null){
+                        EmployeeDto employeeDto = new EmployeeDto();
+
+                        employeeDto.setId(employee.getId());
+                        employeeDto.setName(employee.getName());
+                        employeeDto.setSurname(employee.getSurname());
+                        employeeDto.setDepartment(employee.getDepartment());
+                        employeeDto.setContractType(contractOfEmployee.get().getContractType());
+                        employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
+                        employeeDto.setStatus(payOfEmployee.getStatus());
+                        employeeDto.setDiscount(payOfEmployee.getDiscount());
+
+                        employeeDtos.add(employeeDto);
+                    }
+
+                }
+
+            }
+
+            return employeeDtos;
+
+        }catch (Exception e){
+            System.err.print(e.getMessage());
+        }
+
+        return null;
     }
 
     /**

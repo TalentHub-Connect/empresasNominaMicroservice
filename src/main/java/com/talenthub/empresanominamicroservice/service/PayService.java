@@ -49,12 +49,16 @@ public class PayService {
      */
     public Pay getPayByEmployeeId(Long id){
 
-        Iterable<Pay> allPays = getAll();
+        try{
+            Iterable<Pay> allPays = getAll();
 
-        for(Pay pay : allPays){
-            if(pay.getEmployeeid().intValue() == id){
-                return pay;
+            for(Pay pay : allPays){
+                if(pay.getEmployeeid().longValue() == id){
+                    return pay;
+                }
             }
+        }catch (Exception e){
+            System.err.print(e.getMessage());
         }
 
         return null;
