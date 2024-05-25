@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="a">
+    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Complete the fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/PayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/service/PayService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/EmployeeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/PayService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/service/PayService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/PayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talenthub/empresanominamicroservice/controller/PayController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="QA" />
+        <entry key="$PROJECT_DIR$" value="feature/payNewEndpoints" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -160,6 +157,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.EmpresaNominaMicroserviceApplication" />
         <item itemvalue="Application.EmpresaNominaMicroserviceApplication" />
       </list>
     </recent_temporary>

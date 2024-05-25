@@ -107,7 +107,13 @@ public class PayController {
          Double salariesTotal = 0d;
 
          for(Employee e : allEmployees){
-             salariesTotal += getPayById(e.getId().longValue()).getDiscount();
+
+             Pay p = getPayById(e.getId().longValue());
+
+             if(p != null){
+                 salariesTotal += p.getDiscount();
+             }
+
          }
 
          return salariesTotal;
@@ -185,12 +191,13 @@ public class PayController {
         if(!newsOfPay.isEmpty()){
 
             Double salary = 0d;
+            Double actualSalary = payOfEmployee.getDiscount();
 
             for(News n : newsOfPay){
                 salary += n.getMoneybenefit().doubleValue();
             }
 
-            payOfEmployee.setDiscount(salary);
+            payOfEmployee.setDiscount(actualSalary + salary);
         }
 
         return payOfEmployee;
