@@ -11,4 +11,6 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT e FROM Employee e WHERE e.companyId = ?1")
     List<Employee> findByCompanyId(Integer companyId);
+
+    Employee findByUsername(String username);
 }

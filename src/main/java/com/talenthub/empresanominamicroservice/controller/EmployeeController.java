@@ -196,6 +196,14 @@ public class EmployeeController {
         employee.setPlanId(employeeDetails.getPlanId());
         employee.setCompanyId(employeeDetails.getCompanyId());
         employee.setDepartment(employeeDetails.getDepartment());
+        employee.setUsername(employeeDetails.getUsername());
+        employee.setEmergencycontact(employeeDetails.getEmergencycontact());
+        employee.setNameemergencycontact(employeeDetails.getNameemergencycontact());
         return employeeService.update(employee);
+    }
+
+    @GetMapping("/find_by_username/{username}")
+    public Employee findByUsername(@PathVariable String username){
+        return employeeService.findByUsername(username);
     }
 }

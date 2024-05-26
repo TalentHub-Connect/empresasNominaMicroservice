@@ -13,4 +13,5 @@ public class EmployeeRequest {
     private String phoneNumber;
     private Integer companyId;
     private Integer contractId;
+    private String username;
 }
