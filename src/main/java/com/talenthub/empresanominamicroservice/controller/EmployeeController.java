@@ -170,8 +170,8 @@ public class EmployeeController {
      * @name createEmployee
      * @description Creates a new employee.
      *
-     * @param employee the details of the employee to create.
-     * @return The newly created employee.
+     * @param employee the details of the employee to create .
+     * @return The response Employee entity.
      */
 
     @PostMapping("/createEmployee")
