@@ -145,6 +145,13 @@ public class PayController {
 
             List<News> newsList = newsService.getNewByEmployee(e.getId().longValue());
 
+            Pay p = payService.getPayByEmployeeId(e.getId().longValue());
+
+            if(p != null){
+                p.setStatus("No revisado");
+                payService.update(p);
+            }
+
             if(!newsList.isEmpty()){
                 emptyNews(newsList);
             }
