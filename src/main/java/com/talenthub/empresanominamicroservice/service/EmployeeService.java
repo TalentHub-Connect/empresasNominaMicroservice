@@ -72,6 +72,7 @@ public class EmployeeService {
                 .phoneNumber(employeeRequest.getPhoneNumber())
                 .companyId(employeeRequest.getCompanyId())
                 .contractId(employeeRequest.getContractId())
+                        .username(employeeRequest.getUsername())
                 .build());
     }
 
@@ -90,5 +91,9 @@ public class EmployeeService {
     public Employee getById(Integer id) {
         Optional<Employee> employee = EmployeeRepository.findById(id);
         return employee.orElse(null);
+    }
+
+    public Employee findByUsername(String username) {
+        return EmployeeRepository.findByUsername(username);
     }
 }

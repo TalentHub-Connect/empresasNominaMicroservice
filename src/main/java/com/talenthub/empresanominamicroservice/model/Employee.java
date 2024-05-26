@@ -42,4 +42,13 @@ public class Employee {
 
     @Column(name = "department", length = 50)
     private String department;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "emergencycontact")
+    private Long emergencycontact;
+
+    @Column(name = "nameemergencycontact")
+    private String  nameemergencycontact;
 }
