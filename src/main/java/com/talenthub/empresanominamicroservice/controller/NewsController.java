@@ -55,6 +55,7 @@ public class NewsController {
      * @description Creates a new news.
      *
      * @param news the details of the news to create.
+     * @param ID - Id of the related employee.
      * @return The newly created news.
      */
     @CrossOrigin()
@@ -72,6 +73,8 @@ public class NewsController {
         payEmployee.setStatus("Revisado");
 
         payService.update(payEmployee);
+
+        news.setEmployeeid(id.toString());
 
         return newsService.create(news);
     }
