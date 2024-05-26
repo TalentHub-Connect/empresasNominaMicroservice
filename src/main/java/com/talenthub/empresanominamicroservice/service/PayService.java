@@ -3,11 +3,13 @@ package com.talenthub.empresanominamicroservice.service;
  * Developed by: Juan Felipe Arias
  */
 
+import com.talenthub.empresanominamicroservice.model.News;
 import com.talenthub.empresanominamicroservice.model.Pay;
 import com.talenthub.empresanominamicroservice.repository.PayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -18,6 +20,9 @@ public class PayService {
     
     @Autowired
     private PayRepository payRepository;
+
+    @Autowired
+    private NewsService newsService;
 
     /**
      * @name getAll
@@ -62,6 +67,33 @@ public class PayService {
         }
 
         return null;
+    }
+
+    /**
+     * @name getPayWithNewsById
+     * @description Retrieves pay with news by its Employee's Id.
+     *
+     * @param id the ID of the employee
+     * @return A Pay with the specified ID, if exists
+     */
+    public Pay getPayWithNewsById(Long id) {
+
+        Pay payOfEmployee = getPayByEmployeeId(id);
+        List<News> newsOfPay = newsService.getNewByEmployee(id);
+
+        if(!newsOfPay.isEmpty()){
+
+            Double salary = 0d;
+            Double actualSalary = payOfEmployee.getDiscount();
+
+            for(News n : newsOfPay){
+                salary += n.getMoneybenefit().doubleValue();
+            }
+
+            payOfEmployee.setDiscount(actualSalary + salary);
+        }
+
+        return payOfEmployee;
     }
 
     /**
