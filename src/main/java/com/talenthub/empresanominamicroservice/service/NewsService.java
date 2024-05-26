@@ -44,7 +44,7 @@ public class NewsService {
         List<News> newsOfEmployee = new ArrayList<>();
 
         for(News n : allNews){
-            if(Integer.parseInt(n.getEmployeeid()) == id){
+            if(n.getEmployeeid() != null && Integer.parseInt(n.getEmployeeid()) == id){
                 newsOfEmployee.add(n);
             }
         }
