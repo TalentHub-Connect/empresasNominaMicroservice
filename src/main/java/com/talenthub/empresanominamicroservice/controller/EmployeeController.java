@@ -110,25 +110,34 @@ public class EmployeeController {
                 if(employee.getCompanyId().longValue() == id){
 
                     Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
-                    Pay payOfEmployee = payService.getPayByEmployeeId(employee.getId().longValue());
+                    Pay payOfEmployee = payService.getPayWithNewsById(employee.getId().longValue());
 
-                    if(payOfEmployee != null){
-                        EmployeeDto employeeDto = new EmployeeDto();
+                    EmployeeDto employeeDto = new EmployeeDto();
 
-                        employeeDto.setId(employee.getId());
-                        employeeDto.setName(employee.getName());
-                        employeeDto.setSurname(employee.getSurname());
-                        employeeDto.setDepartment(employee.getDepartment());
+                    employeeDto.setId(employee.getId());
+                    employeeDto.setName(employee.getName());
+                    employeeDto.setSurname(employee.getSurname());
+                    employeeDto.setDepartment(employee.getDepartment());
+
+                    if(contractOfEmployee != null){
                         employeeDto.setContractType(contractOfEmployee.get().getContractType());
                         employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
-                        employeeDto.setStatus(payOfEmployee.getStatus());
-                        employeeDto.setDiscount(payOfEmployee.getDiscount());
-
-                        employeeDtos.add(employeeDto);
+                    }else{
+                        employeeDto.setContractType("Inexistente");
+                        employeeDto.setStartdate("0000-00-00");
                     }
 
-                }
+                    if(payOfEmployee != null){
+                        employeeDto.setStatus(payOfEmployee.getStatus());
+                        employeeDto.setDiscount(payOfEmployee.getDiscount());
+                    }else{
+                        employeeDto.setStatus("No revisado");
+                        employeeDto.setDiscount(0.0);
+                    }
 
+                    employeeDtos.add(employeeDto);
+
+                }
             }
 
             return employeeDtos;
@@ -206,4 +215,43 @@ public class EmployeeController {
     public Employee findByUsername(@PathVariable String username){
         return employeeService.findByUsername(username);
     }
+
+    /**
+     * @name getEmployeeById
+     * @description Retrieves an employee by their ID.
+     *
+     * @param id the ID of the employee.
+     * @return An optional containing the employee with the specified ID, if exists.
+     */
+
+    @Operation(summary = "Get employee by id")
+    @ApiResponse(responseCode = "200", description = "Found the employee")
+    @ApiResponse(responseCode = "404", description = "Employee not found")
+    @ApiResponse(responseCode = "400", description = "Bad request")
+    @GetMapping("/dto/{id}")
+    public EmployeeDto getEmployeeDTOById(@PathVariable Long id) {
+
+        Employee employee = employeeService.getById(id.intValue());
+        Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
+        Pay payOfEmployee = payService.getPayByEmployeeId(employee.getId().longValue());
+
+        EmployeeDto employeeDto = new EmployeeDto();
+
+        if(payOfEmployee != null){
+
+            employeeDto.setId(employee.getId());
+            employeeDto.setName(employee.getName());
+            employeeDto.setSurname(employee.getSurname());
+            employeeDto.setDepartment(employee.getDepartment());
+            employeeDto.setContractType(contractOfEmployee.get().getContractType());
+            employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
+            employeeDto.setStatus(payOfEmployee.getStatus());
+            employeeDto.setDiscount(payOfEmployee.getDiscount());
+
+        }
+
+        return employeeDto;
+
+    }
+
 }

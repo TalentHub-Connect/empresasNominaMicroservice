@@ -62,10 +62,14 @@ public class NewsController {
     public News createNews(@PathVariable Long id,@RequestBody News news) {
 
         Pay payEmployee = payService.getPayByEmployeeId(id);
-        Double moreSalary = news.getMoneybenefit();
-        Double actualSalary = payEmployee.getDiscount();
-        Double finalSalary = actualSalary + moreSalary;
-        payEmployee.setDiscount(finalSalary);
+
+        //It's deprecated because It doesn't makes sense with the business logic.
+        //Double moreSalary = news.getMoneybenefit();
+        //Double actualSalary = payEmployee.getDiscount();
+        //Double finalSalary = actualSalary + moreSalary;
+        //payEmployee.setDiscount(finalSalary);
+
+        payEmployee.setStatus("Revisado");
 
         payService.update(payEmployee);
 
