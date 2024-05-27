@@ -3,11 +3,18 @@ package com.talenthub.empresanominamicroservice.service;
  * Develop by: Juan Felipe Arias
  */
 
+import com.talenthub.empresanominamicroservice.model.Contract;
 import com.talenthub.empresanominamicroservice.model.Employee;
+import com.talenthub.empresanominamicroservice.model.EmployeeDto;
+import com.talenthub.empresanominamicroservice.model.Pay;
+import com.talenthub.empresanominamicroservice.payload.request.EmployeeRequest;
+import com.talenthub.empresanominamicroservice.payload.response.EmployeeResponse;
 import com.talenthub.empresanominamicroservice.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -16,8 +23,18 @@ import java.util.Optional;
 @Service
 public class EmployeeService {
 
+    private final EmployeeRepository EmployeeRepository;
+
     @Autowired
-    private EmployeeRepository EmployeeRepository;
+    private ContractService contractService;
+
+    @Autowired
+    private PayService payService;
+
+    @Autowired
+    public EmployeeService(EmployeeRepository EmployeeRepository) {
+        this.EmployeeRepository = EmployeeRepository;
+    }
 
     /**
      * @name getAll
@@ -30,25 +47,33 @@ public class EmployeeService {
     }
 
     /**
-     * @name getById
-     * @description Retrieves an employee by its ID.
+     * @name getAllEmployeesByCompanyId
+     * @description Retrieves all existing employees by company Id.
      *
-     * @param id the ID of the employee.
-     * @return An optional containing the employee with the specified ID, if exists.
+     * @return An iterable list of employees.
      */
-    public Optional<Employee> getById(Long id){
-        return EmployeeRepository.findById(id);
+
+    public List<Employee> getAllEmployeesByCompanyId(Integer id) {
+        return EmployeeRepository.findByCompanyId(id);
     }
 
     /**
      * @name create
      * @description Creates a new employee.
      *
-     * @param employee the details of the employee to create.
+     * @param employeeRequest the details of the employee to create.
      * @return The newly created employee.
      */
-    public Employee create(Employee employee){
-        return EmployeeRepository.save(employee);
+
+    public Employee createEmployee(EmployeeRequest employeeRequest) {
+        return  EmployeeRepository.save(Employee.builder()
+                .name(employeeRequest.getName())
+                .surname(employeeRequest.getSurname())
+                .phoneNumber(employeeRequest.getPhoneNumber())
+                .companyId(employeeRequest.getCompanyId())
+                .contractId(employeeRequest.getContractId())
+                        .username(employeeRequest.getUsername())
+                .build());
     }
 
     /**
@@ -58,8 +83,17 @@ public class EmployeeService {
      * @param employee the employee to update.
      * @return The updated employee.
      */
+
     public Employee update(Employee employee){
         return EmployeeRepository.save(employee);
     }
 
+    public Employee getById(Integer id) {
+        Optional<Employee> employee = EmployeeRepository.findById(id);
+        return employee.orElse(null);
+    }
+
+    public Employee findByUsername(String username) {
+        return EmployeeRepository.findByUsername(username);
+    }
 }

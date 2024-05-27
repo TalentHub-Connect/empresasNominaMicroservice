@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Fix properties">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/69e734a8-fe95-4ba2-945f-27a6ad142973.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/69e734a8-fe95-4ba2-945f-27a6ad142973.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="b03d9735-e313-4966-bfe1-94d2d460d949" name="Changes" comment="Complete the fix">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talenthub/empresanominamicroservice/controller/PayController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,24 +17,45 @@
       <list>
         <option value="Interface" />
         <option value="com.haulmont.jpb.NewClass" />
-        <option value="com.haulmont.jpb.JpaEntity" />
         <option value="Class" />
+        <option value="com.haulmont.jpb.JpaEntity" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/NewPayEndpoint" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
-  </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Orjuelalaley&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:TalentHub-Connect/empresasNominaMicroservice.git&quot;,
+    &quot;accountId&quot;: &quot;323f8f47-dc37-4653-8682-7846c06208b9&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2fFHF2DCse5wAyOxuiyxZeOsaGI" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -44,35 +64,76 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.EmpresaNominaMicroserviceApplication.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pathVariables",
-    "spring.configuration.checksum": "4ee8e83f827af1390f846c7b635d6804",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.EmpresaNominaMicroserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;QA&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/willi/Documents/Arquitectura/empresasNominaMicroservice&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;fff1bdb47ebfa277ade7c0b385dc9475&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\codes\Arquitectura de Software\Proyecto\empresasNominaMicroservice\src\main\java\com\talenthub\empresanominamicroservice" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.EmpresaNominaMicroserviceApplication">
+    <configuration name="EmpresaNominaMicroserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="DB_DRIVER" value="com.mysql.cj.jdbc.Driver" />
+        <env name="DB_PASS" value="NMpTTtOpvhVJWSowoHxHHnkbTzOqLoPa" />
+        <env name="DB_URL" value="jdbc:mysql://root:NMpTTtOpvhVJWSowoHxHHnkbTzOqLoPa@monorail.proxy.rlwy.net:58588/payrollDb" />
+        <env name="DB_USER" value="root" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="com.talenthub.empresanominamicroservice.EmpresaNominaMicroserviceApplication" />
+      <module name="empresasNominaMicroservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.talenthub.empresanominamicroservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmpresaNominaMicroserviceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="empresasNominaMicroservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.talenthub.empresanominamicroservice.EmpresaNominaMicroserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EmpresaNominaMicroserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
         <env name="MYSQLUSER" value="root" />
@@ -84,6 +145,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.EmpresaNominaMicroserviceApplication" />
+      <item itemvalue="Spring Boot.EmpresaNominaMicroserviceApplication" />
+      <item itemvalue="Spring Boot.EmpresaNominaMicroserviceApplication (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EmpresaNominaMicroserviceApplication" />
+        <item itemvalue="Application.EmpresaNominaMicroserviceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -100,6 +180,16 @@
       <workItem from="1715705495607" duration="6794000" />
       <workItem from="1715745636418" duration="515000" />
       <workItem from="1715806050928" duration="6894000" />
+      <workItem from="1715925366549" duration="320000" />
+      <workItem from="1716052066116" duration="6000" />
+      <workItem from="1716052099112" duration="27000" />
+      <workItem from="1716054881032" duration="1128000" />
+      <workItem from="1716145455258" duration="3894000" />
+      <workItem from="1716153678660" duration="605000" />
+      <workItem from="1716160766522" duration="40000" />
+      <workItem from="1716348218767" duration="6220000" />
+      <workItem from="1716696017258" duration="3646000" />
+      <workItem from="1716701722580" duration="5439000" />
     </task>
     <task id="LOCAL-00001" summary="1.2.1">
       <created>1715467740911</created>
@@ -108,33 +198,62 @@
       <option name="project" value="LOCAL" />
       <updated>1715467740911</updated>
     </task>
-    <task id="LOCAL-00002" summary="Fix some operations of swagger">
+    <task id="LOCAL-00002" summary="New changes">
       <option name="closed" value="true" />
-      <created>1716434096822</created>
+      <created>1715925542280</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1716434096822</updated>
+      <updated>1715925542280</updated>
     </task>
-    <task id="LOCAL-00003" summary="Fix properties">
+    <task id="LOCAL-00003" summary="Properties fix">
       <option name="closed" value="true" />
-      <created>1716435030319</created>
+      <created>1716055054401</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1716435030319</updated>
+      <updated>1716055054401</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ready to deploy">
+      <option name="closed" value="true" />
+      <created>1716056423171</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716056423171</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Complete the fix">
+      <option name="closed" value="true" />
+      <created>1716154750777</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716154750777</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.2.1" />
-    <MESSAGE value="Fix some operations of swagger" />
-    <MESSAGE value="Fix properties" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix properties" />
+    <MESSAGE value="New changes" />
+    <MESSAGE value="Properties fix" />
+    <MESSAGE value="Ready to deploy" />
+    <MESSAGE value="Complete the fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete the fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
