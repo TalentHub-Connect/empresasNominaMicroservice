@@ -30,4 +30,8 @@ public class News {
     @Column(name = "employeeid", length = 45)
     private String employeeid;
 
+    @Size(max = 45)
+    @Column(name = "status", length = 45)
+    private String status;
+
 }
