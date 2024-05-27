@@ -104,7 +104,6 @@ public class PayController {
 
          List<Employee> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
 
-
          Double salariesTotal = 0d;
 
          for(Employee e : allEmployees){
@@ -112,7 +111,7 @@ public class PayController {
              Optional<Contract> c = contractService.getById(e.getContractId().intValue());
 
              if(c != null){
-                 salariesTotal += c.get().getSalary();
+                 salariesTotal += c.get().getSalary() + newsService.getNewTotalByEmployee(e.getId().longValue());
              }
 
          }
