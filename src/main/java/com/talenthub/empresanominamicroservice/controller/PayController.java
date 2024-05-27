@@ -144,17 +144,10 @@ public class PayController {
 
         for (Employee e : allEmployees) {
 
-            List<News> newsList = newsService.getNewByEmployee(e.getId().longValue());
+            List<News> AllnewsOfEmployee = newsService.getNewByEmployee(e.getId().longValue());
 
-            Pay p = payService.getPayByEmployeeId(e.getId().longValue());
-
-            if(p != null){
-                p.setStatus("No revisado");
-                payService.update(p);
-            }
-
-            if(!newsList.isEmpty()){
-                emptyNews(newsList);
+            if(!AllnewsOfEmployee.isEmpty()){
+                emptyNews(AllnewsOfEmployee);
             }
         }
 
@@ -174,6 +167,7 @@ public class PayController {
 
         for(News n : newsOfEmployee){
             n.setMoneybenefit(0.0);
+            n.setStatus("No revisado");
             newsService.update(n);
         }
 
