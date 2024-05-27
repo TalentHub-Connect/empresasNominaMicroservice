@@ -122,17 +122,17 @@ public class EmployeeController {
                     if(contractOfEmployee != null){
                         employeeDto.setContractType(contractOfEmployee.get().getContractType());
                         employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
+                        employeeDto.setDiscount(contractOfEmployee.get().getSalary());
                     }else{
                         employeeDto.setContractType("Inexistente");
                         employeeDto.setStartdate("0000-00-00");
+                        employeeDto.setDiscount(0.0);
                     }
 
                     if(payOfEmployee != null){
                         employeeDto.setStatus(payOfEmployee.getStatus());
-                        employeeDto.setDiscount(payOfEmployee.getDiscount());
                     }else{
                         employeeDto.setStatus("No revisado");
-                        employeeDto.setDiscount(0.0);
                     }
 
                     employeeDtos.add(employeeDto);
@@ -246,7 +246,7 @@ public class EmployeeController {
             employeeDto.setContractType(contractOfEmployee.get().getContractType());
             employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
             employeeDto.setStatus(payOfEmployee.getStatus());
-            employeeDto.setDiscount(payOfEmployee.getDiscount());
+            employeeDto.setDiscount(contractOfEmployee.get().getSalary());
 
         }
 
