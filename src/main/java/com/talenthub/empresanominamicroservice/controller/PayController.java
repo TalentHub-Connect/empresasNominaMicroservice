@@ -110,7 +110,7 @@ public class PayController {
 
              Optional<Contract> c = contractService.getById(e.getContractId().intValue());
 
-             if(c != null){
+             if(c != null && c.isPresent()){
                  salariesTotal += c.get().getSalary() + newsService.getNewTotalByEmployee(e.getId().longValue());
              }
 
