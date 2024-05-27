@@ -124,7 +124,7 @@ public class EmployeeController {
                     employeeDto.setSurname(employee.getSurname());
                     employeeDto.setDepartment(employee.getDepartment());
 
-                    if(contractOfEmployee != null){
+                    if(contractOfEmployee != null && contractOfEmployee.isPresent()){
                         employeeDto.setContractType(contractOfEmployee.get().getContractType());
                         employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
                         employeeDto.setDiscount(contractOfEmployee.get().getSalary() + newsService.getNewTotalByEmployee(employee.getId().longValue()));
