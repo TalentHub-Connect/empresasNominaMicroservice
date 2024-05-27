@@ -3,13 +3,11 @@ package com.talenthub.empresanominamicroservice.controller;
  * Developed by: Juan Felipe Arias.
  */
 
-import com.talenthub.empresanominamicroservice.model.Contract;
-import com.talenthub.empresanominamicroservice.model.Employee;
-import com.talenthub.empresanominamicroservice.model.EmployeeDto;
-import com.talenthub.empresanominamicroservice.model.Pay;
+import com.talenthub.empresanominamicroservice.model.*;
 import com.talenthub.empresanominamicroservice.payload.request.EmployeeRequest;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
+import com.talenthub.empresanominamicroservice.service.NewsService;
 import com.talenthub.empresanominamicroservice.service.PayService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -47,11 +45,18 @@ public class EmployeeController {
 
     private final PayService payService;
 
+    /**
+     * @description Conects with the services for New.
+     */
+
+    private final NewsService newsService;
+
     @Autowired
-    public EmployeeController(EmployeeService employeeService, ContractService contractService, PayService payService) {
+    public EmployeeController(EmployeeService employeeService, ContractService contractService, PayService payService, NewsService newsService) {
         this.employeeService = employeeService;
         this.contractService = contractService;
         this.payService = payService;
+        this.newsService = newsService;
     }
 
     /**
@@ -110,7 +115,7 @@ public class EmployeeController {
                 if(employee.getCompanyId().longValue() == id){
 
                     Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
-                    Pay payOfEmployee = payService.getPayWithNewsById(employee.getId().longValue());
+                    News newOfEmployee = newsService.findLastNewByEmployeeid(employee.getId().longValue());
 
                     EmployeeDto employeeDto = new EmployeeDto();
 
@@ -122,15 +127,15 @@ public class EmployeeController {
                     if(contractOfEmployee != null){
                         employeeDto.setContractType(contractOfEmployee.get().getContractType());
                         employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
-                        employeeDto.setDiscount(contractOfEmployee.get().getSalary());
+                        employeeDto.setDiscount(contractOfEmployee.get().getSalary() + newsService.getNewTotalByEmployee(employee.getId().longValue()));
                     }else{
                         employeeDto.setContractType("Inexistente");
                         employeeDto.setStartdate("0000-00-00");
                         employeeDto.setDiscount(0.0);
                     }
 
-                    if(payOfEmployee != null){
-                        employeeDto.setStatus(payOfEmployee.getStatus());
+                    if(newOfEmployee != null){
+                        employeeDto.setStatus(newOfEmployee.getStatus());
                     }else{
                         employeeDto.setStatus("No revisado");
                     }
@@ -234,6 +239,7 @@ public class EmployeeController {
         Employee employee = employeeService.getById(id.intValue());
         Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
         Pay payOfEmployee = payService.getPayByEmployeeId(employee.getId().longValue());
+        News newOfEmployee = newsService.findLastNewByEmployeeid(employee.getId().longValue());
 
         EmployeeDto employeeDto = new EmployeeDto();
 
@@ -245,7 +251,7 @@ public class EmployeeController {
             employeeDto.setDepartment(employee.getDepartment());
             employeeDto.setContractType(contractOfEmployee.get().getContractType());
             employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
-            employeeDto.setStatus(payOfEmployee.getStatus());
+            employeeDto.setStatus(newOfEmployee.getStatus());
             employeeDto.setDiscount(contractOfEmployee.get().getSalary());
 
         }
