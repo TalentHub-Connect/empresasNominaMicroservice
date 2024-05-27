@@ -4,10 +4,8 @@ package com.talenthub.empresanominamicroservice.controller;
  * Developed by: Juan Felipe Arias
  */
 
-import com.talenthub.empresanominamicroservice.model.Employee;
-import com.talenthub.empresanominamicroservice.model.EmployeeDto;
-import com.talenthub.empresanominamicroservice.model.News;
-import com.talenthub.empresanominamicroservice.model.Pay;
+import com.talenthub.empresanominamicroservice.model.*;
+import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
 import com.talenthub.empresanominamicroservice.service.NewsService;
 import com.talenthub.empresanominamicroservice.service.PayService;
@@ -36,6 +34,8 @@ public class PayController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private ContractService contractService;
 
     /**
      * @name getAllPays
@@ -104,14 +104,15 @@ public class PayController {
 
          List<Employee> allEmployees = employeeService.getAllEmployeesByCompanyId(id);
 
+
          Double salariesTotal = 0d;
 
          for(Employee e : allEmployees){
 
-             Pay p = getPayById(e.getId().longValue());
+             Optional<Contract> c = contractService.getById(e.getContractId().intValue());
 
-             if(p != null){
-                 salariesTotal += p.getDiscount();
+             if(c != null){
+                 salariesTotal += c.get().getSalary();
              }
 
          }
@@ -193,12 +194,13 @@ public class PayController {
     public Pay getPayById(@PathVariable Long id) {
 
         Pay payOfEmployee = payService.getPayByEmployeeId(id);
+        Optional<Contract> contract = contractService.getById(employeeService.getById(id.intValue()).getContractId().intValue());
         List<News> newsOfPay = newsService.getNewByEmployee(id);
 
-        if(!newsOfPay.isEmpty()){
+        if(!newsOfPay.isEmpty() && contract.isPresent()){
 
             Double salary = 0d;
-            Double actualSalary = payOfEmployee.getDiscount();
+            Double actualSalary = contract.get().getSalary();
 
             for(News n : newsOfPay){
                 salary += n.getMoneybenefit().doubleValue();
