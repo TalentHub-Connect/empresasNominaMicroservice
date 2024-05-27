@@ -3,13 +3,11 @@ package com.talenthub.empresanominamicroservice.controller;
  * Developed by: Juan Felipe Arias.
  */
 
-import com.talenthub.empresanominamicroservice.model.Contract;
-import com.talenthub.empresanominamicroservice.model.Employee;
-import com.talenthub.empresanominamicroservice.model.EmployeeDto;
-import com.talenthub.empresanominamicroservice.model.Pay;
+import com.talenthub.empresanominamicroservice.model.*;
 import com.talenthub.empresanominamicroservice.payload.request.EmployeeRequest;
 import com.talenthub.empresanominamicroservice.service.ContractService;
 import com.talenthub.empresanominamicroservice.service.EmployeeService;
+import com.talenthub.empresanominamicroservice.service.NewsService;
 import com.talenthub.empresanominamicroservice.service.PayService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -47,11 +45,18 @@ public class EmployeeController {
 
     private final PayService payService;
 
+    /**
+     * @description Conects with the services for New.
+     */
+
+    private final NewsService newsService;
+
     @Autowired
-    public EmployeeController(EmployeeService employeeService, ContractService contractService, PayService payService) {
+    public EmployeeController(EmployeeService employeeService, ContractService contractService, PayService payService, NewsService newsService) {
         this.employeeService = employeeService;
         this.contractService = contractService;
         this.payService = payService;
+        this.newsService = newsService;
     }
 
     /**
@@ -110,25 +115,34 @@ public class EmployeeController {
                 if(employee.getCompanyId().longValue() == id){
 
                     Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
-                    Pay payOfEmployee = payService.getPayByEmployeeId(employee.getId().longValue());
+                    News newOfEmployee = newsService.findLastNewByEmployeeid(employee.getId().longValue());
 
-                    if(payOfEmployee != null){
-                        EmployeeDto employeeDto = new EmployeeDto();
+                    EmployeeDto employeeDto = new EmployeeDto();
 
-                        employeeDto.setId(employee.getId());
-                        employeeDto.setName(employee.getName());
-                        employeeDto.setSurname(employee.getSurname());
-                        employeeDto.setDepartment(employee.getDepartment());
+                    employeeDto.setId(employee.getId());
+                    employeeDto.setName(employee.getName());
+                    employeeDto.setSurname(employee.getSurname());
+                    employeeDto.setDepartment(employee.getDepartment());
+
+                    if(contractOfEmployee != null){
                         employeeDto.setContractType(contractOfEmployee.get().getContractType());
                         employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
-                        employeeDto.setStatus(payOfEmployee.getStatus());
-                        employeeDto.setDiscount(payOfEmployee.getDiscount());
-
-                        employeeDtos.add(employeeDto);
+                        employeeDto.setDiscount(contractOfEmployee.get().getSalary() + newsService.getNewTotalByEmployee(employee.getId().longValue()));
+                    }else{
+                        employeeDto.setContractType("Inexistente");
+                        employeeDto.setStartdate("0000-00-00");
+                        employeeDto.setDiscount(0.0);
                     }
 
-                }
+                    if(newOfEmployee != null){
+                        employeeDto.setStatus(newOfEmployee.getStatus());
+                    }else{
+                        employeeDto.setStatus("No revisado");
+                    }
 
+                    employeeDtos.add(employeeDto);
+
+                }
             }
 
             return employeeDtos;
@@ -161,8 +175,8 @@ public class EmployeeController {
      * @name createEmployee
      * @description Creates a new employee.
      *
-     * @param employee the details of the employee to create.
-     * @return The newly created employee.
+     * @param employee the details of the employee to create .
+     * @return The response Employee entity.
      */
 
     @PostMapping("/createEmployee")
@@ -206,4 +220,44 @@ public class EmployeeController {
     public Employee findByUsername(@PathVariable String username){
         return employeeService.findByUsername(username);
     }
+
+    /**
+     * @name getEmployeeById
+     * @description Retrieves an employee by their ID.
+     *
+     * @param id the ID of the employee.
+     * @return An optional containing the employee with the specified ID, if exists.
+     */
+
+    @Operation(summary = "Get employee by id")
+    @ApiResponse(responseCode = "200", description = "Found the employee")
+    @ApiResponse(responseCode = "404", description = "Employee not found")
+    @ApiResponse(responseCode = "400", description = "Bad request")
+    @GetMapping("/dto/{id}")
+    public EmployeeDto getEmployeeDTOById(@PathVariable Long id) {
+
+        Employee employee = employeeService.getById(id.intValue());
+        Optional<Contract> contractOfEmployee = contractService.getById(employee.getContractId());
+        Pay payOfEmployee = payService.getPayByEmployeeId(employee.getId().longValue());
+        News newOfEmployee = newsService.findLastNewByEmployeeid(employee.getId().longValue());
+
+        EmployeeDto employeeDto = new EmployeeDto();
+
+        if(payOfEmployee != null){
+
+            employeeDto.setId(employee.getId());
+            employeeDto.setName(employee.getName());
+            employeeDto.setSurname(employee.getSurname());
+            employeeDto.setDepartment(employee.getDepartment());
+            employeeDto.setContractType(contractOfEmployee.get().getContractType());
+            employeeDto.setStartdate(contractOfEmployee.get().getStartDate());
+            employeeDto.setStatus(newOfEmployee.getStatus());
+            employeeDto.setDiscount(contractOfEmployee.get().getSalary());
+
+        }
+
+        return employeeDto;
+
+    }
+
 }

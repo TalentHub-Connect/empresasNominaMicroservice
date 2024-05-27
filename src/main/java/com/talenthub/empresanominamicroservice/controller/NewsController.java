@@ -4,7 +4,7 @@ package com.talenthub.empresanominamicroservice.controller;
  */
 
 import com.talenthub.empresanominamicroservice.model.News;
-import com.talenthub.empresanominamicroservice.model.Pay;
+import com.talenthub.empresanominamicroservice.service.EmployeeService;
 import com.talenthub.empresanominamicroservice.service.NewsService;
 import com.talenthub.empresanominamicroservice.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,9 @@ public class NewsController {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     /**
      * @name getAllNews
@@ -55,19 +58,15 @@ public class NewsController {
      * @description Creates a new news.
      *
      * @param news the details of the news to create.
+     * @param id - Id of the related employee.
      * @return The newly created news.
      */
     @CrossOrigin()
     @PostMapping("/createNews/{id}")
-    public News createNews(@PathVariable Long id,@RequestBody News news) {
+    public News createNews(@PathVariable Long id, @RequestBody News news) {
 
-        Pay payEmployee = payService.getPayByEmployeeId(id);
-        Double moreSalary = news.getMoneybenefit();
-        Double actualSalary = payEmployee.getDiscount();
-        Double finalSalary = actualSalary + moreSalary;
-        payEmployee.setDiscount(finalSalary);
-
-        payService.update(payEmployee);
+        news.setEmployeeid(id.toString());
+        news.setStatus("Revisado");
 
         return newsService.create(news);
     }

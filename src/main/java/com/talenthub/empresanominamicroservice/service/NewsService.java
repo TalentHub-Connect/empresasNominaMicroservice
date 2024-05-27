@@ -44,12 +44,33 @@ public class NewsService {
         List<News> newsOfEmployee = new ArrayList<>();
 
         for(News n : allNews){
-            if(Integer.parseInt(n.getEmployeeid()) == id){
+            if(n.getEmployeeid() != null && Integer.parseInt(n.getEmployeeid()) == id){
                 newsOfEmployee.add(n);
             }
         }
 
         return newsOfEmployee;
+    }
+
+    /**
+     * @name getNewTotalByEmployee
+     * @description Retrieves news by its Employee's ID.
+     *
+     * @param id the ID of the Employee
+     * @return An optional containing the news with the specified employeeId, if exists
+     */
+    public Double getNewTotalByEmployee(Long id){
+
+        Iterable<News> allNews = getAll();
+        Double totalNews = 0.0;
+
+        for(News n : allNews){
+            if(n.getEmployeeid() != null && Integer.parseInt(n.getEmployeeid()) == id){
+                totalNews += n.getMoneybenefit();
+            }
+        }
+
+        return totalNews;
     }
 
     /**
@@ -83,6 +104,10 @@ public class NewsService {
      */
     public News update(News news){
         return newsRepository.save(news);
+    }
+
+    public News findLastNewByEmployeeid(Long employeeid){
+        return newsRepository.findLastByEmployeeid(employeeid);
     }
     
 }
